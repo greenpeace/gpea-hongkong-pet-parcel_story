@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a boilerplate with parcel and storybook",
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "build": "rm -rf dist && parcel build src/index.html",
     "clean": "rm -rf dist",
     "start": "parcel serve src/index.html",
