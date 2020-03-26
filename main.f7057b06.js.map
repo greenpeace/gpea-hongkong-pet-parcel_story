@@ -1,0 +1,1 @@
+{"version":3,"sources":["scripts/main.js"],"names":["console","log"],"mappings":";;;AAAA,aAEA,QAAA,uCAEAA,QAAQC,IAAI","file":"main.f7057b06.js","sourceRoot":"../src","sourcesContent":["'use strict';\n// vendor\nimport 'flexboxgrid/css/flexboxgrid.min.css';\n//\nconsole.log('main.js');\n"]}
