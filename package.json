@@ -1,0 +1,45 @@
+{
+  "name": "gpea-hongkong-pet-parcel_story",
+  "version": "1.0.0",
+  "description": "a boilerplate with parcel and storybook",
+  "scripts": {
+    "build": "rm -rf dist && parcel build src/index.html",
+    "clean": "rm -rf dist",
+    "start": "parcel serve src/index.html",
+    "format": "prettier --write 'src/**/*.{md,js,css,json}'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "flexboxgrid": "^6.3.1",
+    "sanitize.css": "^11.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@storybook/html": "^5.3.17",
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "autoprefixer": "^9.7.5",
+    "babel-loader": "^8.1.0",
+    "husky": "^4.2.3",
+    "parcel": "latest",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
+    "postcss": "^7.0.27",
+    "postcss-modules": "^1.5.0",
+    "prettier": "^2.0.1",
+    "pretty-quick": "^2.0.1",
+    "sass": "^1.26.3",
+    "tailwindcss": "^1.2.0"
+  }
+}

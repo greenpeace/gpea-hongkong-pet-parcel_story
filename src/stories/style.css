@@ -1,0 +1,63 @@
+.section-hero-top {
+  height: 70vh;
+  padding: 0 !important;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-hero-top .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: -webkit-transform 100ms ease-out;
+  transition: -webkit-transform 100ms ease-out;
+  transition: transform 100ms ease-out;
+  transition: transform 100ms ease-out, -webkit-transform 100ms ease-out;
+}
+
+.ct-container.anchor-center {
+  position: absolute;
+  bottom: 22px;
+  height: auto !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scroll {
+  background-color: #292f47;
+  width: 100%;
+  white-space: nowrap;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.scroll,
+.scroll nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll nav {
+  padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow-y: hidden;
+  height: 100%;
+  align-items: center;
+  flex-flow: row nowrap;
+  scroll-snap-type: x proximity;
+}
+.scroll a {
+  color: #fff;
+  margin-right: 30px;
+}
+.scroll a:hover {
+  color: #6c0;
+  font-weight: 700;
+}
