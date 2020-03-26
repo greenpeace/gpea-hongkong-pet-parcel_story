@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"KIzB":[function(require,module,exports) {
 "use strict";require("flexboxgrid/css/flexboxgrid.min.css"),console.log("main.js");
 },{"flexboxgrid/css/flexboxgrid.min.css":"JHU5"}]},{},["KIzB"], null)
-//# sourceMappingURL=/main.f7057b06.js.map
+//# sourceMappingURL=main.f7057b06.js.map
