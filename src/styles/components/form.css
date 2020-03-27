@@ -4,11 +4,11 @@
 }
 
 .form-header {
-  @apply text-2xl text-center text-white font-bold;
+  @apply mt-4 mb-8 text-2xl text-center text-white font-bold;
 }
 
 .form-body {
-  @apply bg-white px-4 py-8 my-4 rounded-xl shadow-2xl;
+  @apply border bg-white px-4 py-8 rounded-xl shadow-2xl overflow-hidden;
 }
 
 .form-row {
@@ -16,11 +16,11 @@
 }
 
 .form-label {
-  @apply mb-2 block text-gray-700 text-xs;
+  @apply pl-3 mb-1 block text-gray-500 text-xs;
 }
 
 .form-input {
-  @apply bg-gray-100 text-base appearance-none w-full rounded py-2 px-3;
+  @apply border w-full bg-gray-100 text-base appearance-none rounded py-2 px-3;
 }
 
 .form-input:hover {
@@ -28,7 +28,7 @@
 }
 
 .form-input:focus {
-  @apply bg-white outline-none shadow-outline border-gray-400;
+  @apply bg-white outline-none border-gpgreen;
 }
 
 .form-message {

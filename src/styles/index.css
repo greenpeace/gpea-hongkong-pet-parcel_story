@@ -1,13 +1,21 @@
-/* purgecss start ignore */
-@import 'normalize.css';
-@import 'flexboxgrid/css/flexboxgrid.min.css';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:400,700,900');
+@import 'normalize.css';
+/* purgecss start ignore */
+@import 'flexboxgrid/css/flexboxgrid.min.css';
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
 @import './components/base.css';
 @import './components/headerfooter.css';
 @import './components/form.css';
+
+.participants {
+  @apply flex-1;
+}
+
+.badge {
+  @apply relative;
+}
 
 .line {
   @apply h-px bg-gray-400 w-11/12 my-8;

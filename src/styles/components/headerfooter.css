@@ -4,8 +4,8 @@
 
 .logo {
   @apply object-contain;
-  padding: 4px;
-  height: 32px;
+  padding: 2px 0px;
+  height: 24px;
   z-index: 1;
 }
 
