@@ -15,12 +15,11 @@
 }
 
 html {
-  @apply antialiased;
   font-size: 100%;
 }
 
 body {
-  @apply font-notohk text-gray-900 relative bg-gray-100;
+  @apply font-notohk relative min-h-screen bg-gray-100 antialiased text-gray-900 bg-gray-100;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
@@ -34,6 +33,7 @@ body {
 .header {
   @apply px-4 py-4 absolute top-0 left-0 w-full;
   background-color: rgba(255, 255, 255, 0.85);
+  z-index: 1;
 }
 
 .footer {
@@ -44,16 +44,20 @@ body {
   @apply leading-loose flex flex-col justify-between items-end text-right list-none list-inside;
 }
 
-.hero-banner {
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat;
-  z-index: -2;
-  background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
+.absolute-full {
+  @apply absolute top-0 left-0 w-full h-full;
 }
 
 .hero-overlay {
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat;
+  @apply bg-cover bg-center bg-no-repeat;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+.hero-banner {
+  @apply bg-cover bg-center bg-no-repeat;
+  z-index: -2;
+  background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
 }
 
 /* Form */
@@ -72,14 +76,23 @@ body {
 
 .form-row {
   @apply w-full mb-4;
+  height: 60px;
 }
 
 .form-label {
   @apply mb-2 block text-gray-700 text-xs;
 }
 
-.form-field {
+.form-input {
   @apply bg-gray-100 text-base appearance-none w-full rounded py-2 px-3;
+}
+
+.form-input:hover {
+  @apply bg-gray-200;
+}
+
+.form-input:focus {
+  @apply bg-white outline-none shadow-outline border-gray-400;
 }
 
 .form-message {
@@ -95,6 +108,10 @@ body {
 }
 
 /* Content */
+
+.article {
+  @apply py-6;
+}
 
 .text {
   @apply text-base tracking-wide mb-4;

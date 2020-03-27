@@ -4,7 +4,7 @@
   "description": "a boilerplate with parcel and storybook",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "build": "rm -rf dist && parcel build src/index.html",
+    "build": "rm -rf dist && parcel build src/index.html --public-url ./",
     "clean": "rm -rf dist",
     "start": "parcel serve src/index.html",
     "format": "prettier --write 'src/**/*.{md,js,css,json}'",
@@ -23,8 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "flexboxgrid": "^6.3.1",
-    "sanitize.css": "^11.0.0"
+    "flexboxgrid": "^6.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

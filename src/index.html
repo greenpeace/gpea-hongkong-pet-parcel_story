@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
-  <body class="min-h-screen bg-gray-100">
+  <body class="body">
     <!--[if IE]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -29,10 +29,10 @@
       </div>
     </header>
     <main id="app" class="main">
-      <section class="relative flex justify-end min-h-screen">
+      <section class="bg-gray-400 section-hero relative min-h-screen">
         <!-- Hero -->
-        <div class="hero-overlay"></div>
-        <div class="hero-banner"></div>
+        <div class="hero-overlay absolute-full invisible"></div>
+        <div class="hero-banner absolute-full invisible"></div>
         <!-- Hero -->
         <!-- Form -->
         <div
@@ -57,7 +57,7 @@
                     姓氏 Last Name
                   </label>
                   <input
-                    class="form-field"
+                    class="form-input"
                     type="text"
                     placeholder="姓氏 Last Name"
                   />
@@ -67,7 +67,7 @@
                     名字 First Name
                   </label>
                   <input
-                    class="form-field"
+                    class="form-input"
                     type="text"
                     placeholder="名字 First Name"
                   />
@@ -80,7 +80,7 @@
               </label>
               <input
                 type="text"
-                class="form-field"
+                class="form-input"
                 placeholder="電郵地址 Email Address"
               />
             </div>
@@ -96,7 +96,7 @@
                       >+</span
                     >
                     <input
-                      class="form-field pl-6"
+                      class="form-input pl-6"
                       type="text"
                       placeholder="852"
                       value="852"
@@ -118,12 +118,12 @@
                 </div>
                 <div class="w-4/5 pl-1">
                   <input
-                    class="form-field"
+                    class="form-input"
                     type="text"
                     placeholder="聯絡電話 Mobile Number"
                   />
                   <p class="form-warning invisible">
-                    Form message here about validation.
+                    Validation Message here.
                   </p>
                 </div>
               </div>
@@ -134,7 +134,7 @@
               </label>
               <div class="relative">
                 <input
-                  class="form-field"
+                  class="form-input"
                   type="text"
                   placeholder="DD/MM/YYYY"
                 />
@@ -180,7 +180,7 @@
       <!-- Content -->
       <section class="bg-white">
         <!-- Article 1 -->
-        <article class="pt-6 pb-3">
+        <article class="article">
           <div
             class="container mx-auto grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4"
           >
@@ -207,20 +207,18 @@
           </div>
         </article>
         <!-- Article 2 -->
-        <article class="pt-3 pb-6 relative">
-          <div class="bg-gray-100 w-full h-full absolute left-0 bottom-0"></div>
+        <article class="article bg-gray-100 relative">
           <div
-            class="bg-white container mx-auto grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4"
+            class="container mx-auto grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4"
           >
-            <div class="relative lg:col-start-2 lg:col-end-3">
-              <p class="text">
-                填海選址鄰近海域具生態價值，或令海洋或陸地物種的棲息地永久喪失。
-              </p>
-              <p class="text">
-                我們與6個環保及關注團體發佈的生態調查發現，鄰近填海選址的周公島，具國家二級保護野生動物白腹海鵰的鳥巢，全球獨有的鮑氏雙足蜥，更在中部水域錄得一種稀有的軟珊瑚海筆，生態價值絕不應被刻意低估。
-              </p>
+            <div class="lg:col-start-1 lg:col-end-3">
+              <img
+                class="w-full"
+                src="https://api.greenpeace.org.hk/2019/elm/img/DJI_0431.c6b2b22f.jpg"
+                alt=""
+              />
             </div>
-            <div class="relative lg:col-start-3 lg:col-end-4">
+            <div class="self-end relative lg:col-start-3 lg:col-end-4">
               <p class="text">
                 填海選址鄰近海域具生態價值，或令海洋或陸地物種的棲息地永久喪失。
               </p>
@@ -245,7 +243,7 @@
             <p class="text-sm">
               綠色和平是獨立的國際環保組織，通過科學研究、政策倡議及和平行動，揭露全球環境問題並提出相應解決方案。我們從不接受任何政府、企業或政治團體的資助，只接受個人的直接捐款，以維持公正獨立。
             </p>
-            <div class="font-bold text-sm mt-4 mb-4">
+            <div class="font-bold text-sm my-8">
               © GREENPEACE 2020
             </div>
           </div>
