@@ -1,0 +1,18 @@
+.header {
+  @apply w-full px-4 py-4 absolute top-0 left-0;
+}
+
+.logo {
+  @apply object-contain;
+  padding: 4px;
+  height: 32px;
+  z-index: 1;
+}
+
+.footer {
+  @apply w-full px-4 py-12 bg-gpdarkblue text-white text-sm;
+}
+
+.footer-links {
+  @apply leading-loose flex flex-col justify-between items-end text-right list-none list-inside;
+}

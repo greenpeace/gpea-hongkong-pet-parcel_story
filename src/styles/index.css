@@ -5,35 +5,12 @@
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
+@import './components/base.css';
+@import './components/headerfooter.css';
+@import './components/form.css';
 
-html {
-  font-size: 100%;
-}
-
-body {
-  @apply font-notohk relative min-h-screen bg-gray-100 antialiased text-gray-900 bg-gray-100;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.logo {
-  @apply object-contain;
-  height: 24px;
-}
-
-.header {
-  @apply px-4 py-4 absolute top-0 left-0 w-full;
-  background-color: rgba(255, 255, 255, 0.85);
-  z-index: 1;
-}
-
-.footer {
-  @apply px-4 py-8 bg-gpdarkblue text-white text-sm;
-}
-
-.footer-links {
-  @apply leading-loose flex flex-col justify-between items-end text-right list-none list-inside;
+.line {
+  @apply h-px bg-gray-400 w-11/12 my-8;
 }
 
 .absolute-full {
@@ -52,54 +29,6 @@ body {
   background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
 }
 
-/* Form */
-.form-container {
-  @apply z-10;
-}
-
-.form-header {
-  @apply text-2xl text-center text-white font-bold;
-}
-
-.form-body {
-  @apply bg-white px-4 py-8 my-4 rounded-xl shadow-2xl;
-}
-
-.form-row {
-  @apply w-full mb-4;
-  height: 60px;
-}
-
-.form-label {
-  @apply mb-2 block text-gray-700 text-xs;
-}
-
-.form-input {
-  @apply bg-gray-100 text-base appearance-none w-full rounded py-2 px-3;
-}
-
-.form-input:hover {
-  @apply bg-gray-200;
-}
-
-.form-input:focus {
-  @apply bg-white outline-none shadow-outline border-gray-400;
-}
-
-.form-message {
-  @apply mt-2 text-gray-500 text-xs;
-}
-
-.form-warning {
-  @apply text-red-500 text-xs;
-}
-
-.form-button {
-  @apply shadow block w-full bg-orange-500 text-white text-center font-bold py-4 px-4 rounded;
-}
-
-/* Content */
-
 .article {
   @apply py-6;
 }
@@ -113,12 +42,3 @@ body {
  * by plugins.
  */
 @tailwind utilities;
-
-/**
-  * Use this directive to control where Tailwind injects the responsive
-  * variations of each utility.
-  *
-  * If omitted, Tailwind will append these classes to the very end of
-  * your stylesheet by default.
-  */
-@tailwind screens;

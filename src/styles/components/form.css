@@ -1,0 +1,44 @@
+/* Form */
+.form-container {
+  @apply z-10;
+}
+
+.form-header {
+  @apply text-2xl text-center text-white font-bold;
+}
+
+.form-body {
+  @apply bg-white px-4 py-8 my-4 rounded-xl shadow-2xl;
+}
+
+.form-row {
+  @apply w-full mb-4;
+}
+
+.form-label {
+  @apply mb-2 block text-gray-700 text-xs;
+}
+
+.form-input {
+  @apply bg-gray-100 text-base appearance-none w-full rounded py-2 px-3;
+}
+
+.form-input:hover {
+  @apply bg-gray-200;
+}
+
+.form-input:focus {
+  @apply bg-white outline-none shadow-outline border-gray-400;
+}
+
+.form-message {
+  @apply mt-2 text-gray-500 text-xs;
+}
+
+.form-warning {
+  @apply text-red-500 text-xs;
+}
+
+.form-button {
+  @apply shadow block w-full bg-orange-500 text-white text-center font-bold py-4 px-4 rounded;
+}
