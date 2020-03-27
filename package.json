@@ -23,14 +23,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "flexboxgrid": "^6.3.1"
+    "flexboxgrid": "^6.3.1",
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "@storybook/html": "^5.3.17",
     "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^9.7.5",
     "babel-loader": "^8.1.0",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "parcel": "latest",
     "parcel-bundler": "^1.12.4",

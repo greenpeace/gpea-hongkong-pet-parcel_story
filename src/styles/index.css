@@ -1,18 +1,10 @@
+/* purgecss start ignore */
+@import 'normalize.css';
+@import 'flexboxgrid/css/flexboxgrid.min.css';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:400,700,900');
 @tailwind base;
 @tailwind components;
-
-/* Header & Footer */
-
-/*
-.test-responsive {
-  @apply sm:bg-red-500 md:bg-orange-500 lg:bg-yellow-500 xl:bg-green-500;
-}
-*/
-
-* {
-  border-style: none;
-}
+/* purgecss end ignore */
 
 html {
   font-size: 100%;
@@ -26,7 +18,7 @@ body {
 }
 
 .logo {
-  @apply border-none object-contain;
+  @apply object-contain;
   height: 24px;
 }
 
@@ -62,8 +54,7 @@ body {
 
 /* Form */
 .form-container {
-  @apply z-10 self-center min-h-screen py-20;
-  padding-top: 80px;
+  @apply z-10;
 }
 
 .form-header {
