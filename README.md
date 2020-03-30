@@ -1,15 +1,33 @@
 # gpea-hongkong-pet-parcel_story
 
-Create page template using parcel and storybook
+[Preview the page](https://greenpeace.github.io/gpea-hongkong-pet-parcel_story/)
 
-```javascript
-parcel;
-```
+Create a page template using parcel.
 
-## Start a local server using:
+## Start a local server using
 
 ```javascript
 npm install
 npm run start
+```
+
+## Build the page
+
+```javascript
 npm run build
 ```
+
+## Deploy to github page
+
+```javascript
+npm run build
+npm run deploy
+```
+
+### Parcel as the application bundler
+
+[Parcel](https://parceljs.org/)
+
+### Tailwindcss in the project
+
+[tailwindcss](https://tailwindcss.com/)

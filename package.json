@@ -4,7 +4,7 @@
   "description": "a boilerplate with parcel and storybook",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "build": "rm -rf dist && parcel build src/index.html",
+    "build": "rm -rf dist && parcel build src/index.html --public-url ./",
     "clean": "rm -rf dist",
     "start": "parcel serve src/index.html",
     "format": "prettier --write 'src/**/*.{md,js,css,json}'",
@@ -24,23 +24,26 @@
   "license": "ISC",
   "dependencies": {
     "flexboxgrid": "^6.3.1",
-    "sanitize.css": "^11.0.0"
+    "normalize.css": "^8.0.1",
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "@storybook/html": "^5.3.17",
     "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^9.7.5",
     "babel-loader": "^8.1.0",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "parcel": "latest",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-bundle-visualiser": "^1.2.0",
     "postcss": "^7.0.27",
+    "postcss-import": "^12.0.1",
     "postcss-modules": "^1.5.0",
     "prettier": "^2.0.1",
     "pretty-quick": "^2.0.1",
-    "sass": "^1.26.3",
-    "tailwindcss": "^1.2.0"
+    "sass": "^1.26.3"
   }
 }

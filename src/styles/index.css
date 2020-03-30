@@ -1,100 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:400,700,900');
+@import 'normalize.css';
+/* purgecss start ignore */
+@import 'flexboxgrid/css/flexboxgrid.min.css';
 @tailwind base;
 @tailwind components;
+/* purgecss end ignore */
+@import './components/base.css';
+@import './components/headerfooter.css';
+@import './components/form.css';
 
-/* Header & Footer */
-
-/*
-.test-responsive {
-  @apply sm:bg-red-500 md:bg-orange-500 lg:bg-yellow-500 xl:bg-green-500;
-}
-*/
-
-* {
-  border-style: none;
+.participants {
+  @apply flex-1;
 }
 
-html {
-  @apply antialiased;
-  font-size: 100%;
+.badge {
+  @apply relative;
 }
 
-body {
-  @apply font-notohk text-gray-900 relative bg-gray-100;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
+.line {
+  @apply h-px bg-gray-400 w-11/12 my-8;
 }
 
-.logo {
-  @apply border-none object-contain;
-  height: 24px;
+.absolute-full {
+  @apply absolute top-0 left-0 w-full h-full;
 }
 
-.header {
-  @apply px-4 py-4 absolute top-0 left-0 w-full;
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.footer {
-  @apply px-4 py-8 bg-gpdarkblue text-white text-sm;
-}
-
-.footer-links {
-  @apply leading-loose flex flex-col justify-between items-end text-right list-none list-inside;
+.hero-overlay {
+  @apply bg-cover bg-center bg-no-repeat;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.07);
 }
 
 .hero-banner {
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat;
+  @apply bg-cover bg-center bg-no-repeat;
   z-index: -2;
   background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
 }
 
-.hero-overlay {
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.15);
+.article {
+  @apply py-6;
 }
-
-/* Form */
-.form-container {
-  @apply z-10 self-center min-h-screen py-20;
-  padding-top: 80px;
-}
-
-.form-header {
-  @apply text-2xl text-center text-white font-bold;
-}
-
-.form-body {
-  @apply bg-white px-4 py-8 my-4 rounded-xl shadow-2xl;
-}
-
-.form-row {
-  @apply w-full mb-4;
-}
-
-.form-label {
-  @apply mb-2 block text-gray-700 text-xs;
-}
-
-.form-field {
-  @apply bg-gray-100 text-base appearance-none w-full rounded py-2 px-3;
-}
-
-.form-message {
-  @apply mt-2 text-gray-500 text-xs;
-}
-
-.form-warning {
-  @apply text-red-500 text-xs;
-}
-
-.form-button {
-  @apply shadow block w-full bg-orange-500 text-white text-center font-bold py-4 px-4 rounded;
-}
-
-/* Content */
 
 .text {
   @apply text-base tracking-wide mb-4;
@@ -105,12 +50,3 @@ body {
  * by plugins.
  */
 @tailwind utilities;
-
-/**
-  * Use this directive to control where Tailwind injects the responsive
-  * variations of each utility.
-  *
-  * If omitted, Tailwind will append these classes to the very end of
-  * your stylesheet by default.
-  */
-@tailwind screens;
