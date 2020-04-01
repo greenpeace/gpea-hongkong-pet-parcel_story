@@ -1,6 +1,6 @@
 /* Form */
 .form-container {
-  @apply z-10;
+  @apply z-10 my-4;
 }
 
 .form-header {
@@ -16,7 +16,7 @@
 }
 
 .form-label {
-  @apply pl-3 mb-1 block text-gray-500 text-xs;
+  @apply px-2 mb-1 w-full text-gray-500 text-xs;
 }
 
 .form-input {

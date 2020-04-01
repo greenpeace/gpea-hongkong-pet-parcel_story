@@ -6,8 +6,11 @@
 @tailwind components;
 /* purgecss end ignore */
 @import './components/base.css';
-@import './components/headerfooter.css';
+@import './components/header.css';
+@import './components/footer.css';
 @import './components/form.css';
+/* page styles */
+@import './pages/preference.css';
 
 .participants {
   @apply flex-1;

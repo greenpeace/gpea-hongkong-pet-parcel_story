@@ -1,0 +1,10 @@
+.header {
+  @apply w-full px-4 py-4 bg-white;
+}
+
+.logo {
+  @apply object-contain;
+  padding: 2px 0px;
+  height: 28px;
+  z-index: 1;
+}
