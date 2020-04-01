@@ -24,6 +24,12 @@ npm run build
 npm run deploy
 ```
 
+## Develop aother page
+
+```javascript
+parcel / src / preference.html;
+```
+
 ### Parcel as the application bundler
 
 [Parcel](https://parceljs.org/)
