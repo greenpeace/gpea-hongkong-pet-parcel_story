@@ -12,6 +12,31 @@
 /* page styles */
 @import './pages/preference.css';
 
+.speakers {
+  @apply w-full my-8 flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+.speaker {
+  @apply flex flex-col items-center overflow-hidden text-center;
+}
+
+.speaker__avatar {
+  @apply rounded-full h-32 w-32 flex-shrink-0 object-cover;
+}
+.speaker p {
+  display: none;
+}
+
+.speaker + .speaker {
+  margin-left: 20px;
+}
+
 .participants {
   @apply flex-1;
 }
@@ -53,3 +78,5 @@
  * by plugins.
  */
 @tailwind utilities;
+
+@import './utilities/enform.scss';
