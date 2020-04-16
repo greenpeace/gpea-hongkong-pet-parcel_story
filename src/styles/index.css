@@ -13,7 +13,10 @@
 @import './pages/preference.css';
 
 .speakers {
-  @apply w-full my-8 flex;
+  @apply w-full my-8 py-4 flex;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: space-around;
   align-items: flex-start;
   flex-flow: row nowrap;

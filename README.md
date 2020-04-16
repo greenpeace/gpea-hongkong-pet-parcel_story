@@ -7,21 +7,21 @@ Create a page template using parcel.
 ## Start a local server using
 
 ```javascript
-npm install
-npm run start
+yarn
+yarn start
 ```
 
 ## Build the page
 
 ```javascript
-npm run build
+yarn build
 ```
 
 ## Deploy to github page
 
 ```javascript
-npm run build
-npm run deploy
+yarn build
+yarn deploy
 ```
 
 ## Develop aother page
