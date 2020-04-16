@@ -1,6 +1,5 @@
 .header {
-  @apply w-full px-4 py-4;
-  height: 50px;
+  @apply w-full px-4 py-2;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -24,4 +23,8 @@
 
 .header--green .logo--green {
   display: none;
+}
+
+.nav-button {
+  @apply bg-gporange text-white font-bold py-2 px-4 rounded-2xl;
 }
