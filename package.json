@@ -4,7 +4,8 @@
   "description": "a boilerplate with parcel and storybook",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "build": "rm -rf dist && parcel build src/index.html --public-url ./",
+    "build": "rm -rf dist && parcel build src/*.html --public-url ./ --no-minify",
+    "build:en": "parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/registration/ --no-minify",
     "clean": "rm -rf dist",
     "start": "parcel serve src/index.html",
     "format": "prettier --write 'src/**/*.{md,js,css,json}'",
