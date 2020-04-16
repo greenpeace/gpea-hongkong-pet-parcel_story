@@ -1,13 +1,19 @@
 .form-container {
+  //
   .en__field__error {
-    font-size: 10px;
+    font-size: 12px;
     color: #ff6666;
   }
+  //
   .en__component--column {
     min-width: 0;
   }
   .en__component--formblock {
     width: 100%;
+  }
+  .en__captcha,
+  .en__field {
+    padding-bottom: 0px;
   }
   .en__field {
     width: 100%;
@@ -16,9 +22,12 @@
   .en__field__element {
     width: 100%;
   }
+  //
   .en__field__label {
     font-size: 14px;
+    width: 100%;
   }
+  //
   .en__field__input {
     width: 100%;
     min-width: 100px;
@@ -39,9 +48,11 @@
     background-size: 10px auto;
     background-position: calc(100% - 5px) center;
   }
+  //
   .en__field--email-ok-hongkong {
     display: none;
   }
+  //
   .en__submit {
     width: 100%;
   }

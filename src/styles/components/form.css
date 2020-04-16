@@ -4,7 +4,7 @@
 }
 
 .form-header {
-  @apply mt-4 mb-8 text-2xl text-center text-white font-bold;
+  @apply mt-4 mb-8 text-2xl text-center font-bold;
 }
 
 .form-body {
