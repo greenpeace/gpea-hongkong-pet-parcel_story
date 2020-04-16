@@ -1,10 +1,30 @@
 .header {
-  @apply w-full px-4 py-4 bg-white;
+  @apply w-full px-4 py-2;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.header--white {
+  @apply bg-white;
+}
+
+.header--green {
+  @apply bg-gpgreen;
 }
 
 .logo {
   @apply object-contain;
-  padding: 2px 0px;
-  height: 28px;
+  height: 20px;
   z-index: 1;
+}
+
+.header--white .logo--white {
+  display: none;
+}
+
+.header--green .logo--green {
+  display: none;
+}
+
+.nav-button {
+  @apply bg-gporange text-white font-bold py-2 px-4 rounded-2xl;
 }

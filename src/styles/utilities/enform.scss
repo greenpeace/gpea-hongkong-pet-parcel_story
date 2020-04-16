@@ -1,0 +1,68 @@
+.form-container {
+  //
+  .en__field__error {
+    font-size: 12px;
+    color: #ff6666;
+  }
+  //
+  .en__component--column {
+    min-width: 0;
+  }
+  .en__component--formblock {
+    width: 100%;
+  }
+  .en__captcha,
+  .en__field {
+    padding-bottom: 0px;
+  }
+  .en__field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .en__field__element {
+    width: 100%;
+  }
+  //
+  .en__field__label {
+    font-size: 14px;
+    width: 100%;
+  }
+  //
+  .en__field__input {
+    width: 100%;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 4px;
+  }
+  .en__field__input--select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #95989a;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzQuNDIgODcuMjEiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZGRkfTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5zZWxlY3QtYXJyb3ctZ3JheTwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCAwbDg3LjIxIDg3LjIxTDE3NC40MiAwSDB6IiBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiLz48L2c+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-size: 10px auto;
+    background-position: calc(100% - 5px) center;
+  }
+  //
+  .en__field--email-ok-hongkong {
+    display: none;
+  }
+  //
+  .en__submit {
+    width: 100%;
+  }
+  .en__submit button {
+    width: 100%;
+    border: none;
+    background-color: #ff8100;
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 4px;
+  }
+}
