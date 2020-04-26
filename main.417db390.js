@@ -134,4 +134,4 @@ document.addEventListener('DOMContentLoaded', function (event) {
   var scroll = new _smoothScroll.default('a[href*="#"]');
 });
 },{"smooth-scroll":"vL7d"}]},{},["KIzB"], null)
-//# sourceMappingURL=https://api.greenpeace.org.hk/2020/registration/main.417db390.js.map
+//# sourceMappingURL=main.417db390.js.map
