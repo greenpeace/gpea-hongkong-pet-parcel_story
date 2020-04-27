@@ -11,6 +11,12 @@ yarn
 yarn start
 ```
 
+## Localhost and serve the demo pages
+
+```javascript
+yarn parcel ${page path}
+```
+
 ## Build the page
 
 ```javascript
@@ -22,12 +28,6 @@ yarn build
 ```javascript
 yarn build
 yarn deploy
-```
-
-## Develop aother page
-
-```javascript
-parcel / src / preference.html;
 ```
 
 ### Parcel as the application bundler
