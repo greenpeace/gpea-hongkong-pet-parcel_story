@@ -1709,6 +1709,11 @@ video {
   margin-right: 0.5rem;
 }
 
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .my-8{
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -1803,14 +1808,6 @@ video {
 .py-12{
   padding-top: 3rem;
   padding-bottom: 3rem;
-}
-
-.pb-4{
-  padding-bottom: 1rem;
-}
-
-.pt-8{
-  padding-top: 2rem;
 }
 
 .pb-8{
@@ -2046,4 +2043,4 @@ video {
 }
 
 
-/*# sourceMappingURL=styles.0eb081c5.css.map */
+/*# sourceMappingURL=styles.0a0bdd00.css.map */
