@@ -10,20 +10,38 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
-  <body class="antialiased text-gray-900 bg-gray-100 relative flex flex-col items-center font-notohk md:h-screen">
+  <body
+    class="antialiased text-gray-900 bg-gray-100 relative flex flex-col items-center font-notohk md:h-screen"
+  >
     <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
-  <!-- Add your site or application content here -->
-    <header class="header">
-      <div class="container mx-auto flex items-center justify-start">
-        <img
-          class="logo bg-gray-100"
-          src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-green-%5bweb%5d-01.png"
-          alt="logo"
-        />
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <!-- header -->
+    <header class="header header--green">
+      <div class="container mx-auto flex items-center justify-between">
+        <div>
+          <img
+            class="logo logo--green"
+            src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-green-%5bweb%5d-01.png"
+            alt="logo"
+          />
+          <img
+            class="logo logo--white"
+            src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-white-%5bweb%5d-01.png"
+            alt="logo"
+          />
+        </div>
+        <div class="nav-button">
+          <a class="btn" data-scroll href="#form-container">立即登記</a>
+        </div>
       </div>
     </header>
+    <!-- end of header -->
     <main id="app" class="main">
       <section class="min-h-screen relative">
         <div class="flex flex-wrap">
@@ -38,31 +56,65 @@
             <div class="px-4">
               <div class="flex flex-wrap justify-between">
                 <div class="mt-8 mb-4">
-                  <h1 class="text-4xl font-bold">Building a Visual Language<p class="text-base text-gray-700 mt-2">Behind the scenes of our new design system</p></h1>
+                  <h1 class="text-4xl font-bold">
+                    Building a Visual Language
+                    <p class="text-base text-gray-700 mt-2">
+                      Behind the scenes of our new design system
+                    </p>
+                  </h1>
                 </div>
-                <div class="md:hidden w-full flex flex-wrap justify-between items-center">
+                <div
+                  class="md:hidden w-full flex flex-wrap justify-between items-center"
+                >
                   <div class="participants mr-2">
                     <ul class="text-gray-700 text-sm">
-                      <li><span class="font-bold">Chris Chan</span> has signed</li>
-                      <li><span class="font-bold">Chris Chan</span> has signed</li>
-                      <li><span class="font-bold">Chris Chan</span> has signed</li>
+                      <li>
+                        <span class="font-bold">Chris Chan</span> has signed
+                      </li>
+                      <li>
+                        <span class="font-bold">Chris Chan</span> has signed
+                      </li>
+                      <li>
+                        <span class="font-bold">Chris Chan</span> has signed
+                      </li>
                     </ul>
                   </div>
                   <div class="badge">
                     <div class="badge-image-wrapper w-full h-full">
                       <img
-                      class="mx-auto h-32 w-32 rounded-full object-cover"
-                      src="https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg"
-                      alt="badge"
-                    />
-                    <div class="absolute left-0 top-0 w-full h-full inset-y-auto circle-progress-bar">
-                      <svg class="w-full h-full fill-current text-transparent" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="46" fill="none" stroke="white" stroke-opacity="0.3" stroke-width="3"></circle>
-                        <circle cx="50" cy="50" r="46" fill="none" stroke="white" stroke-width="4" stroke-dasharray="200" stroke-dashoffset="30"></circle>
-                      </svg>
+                        class="mx-auto h-32 w-32 rounded-full object-cover"
+                        src="https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg"
+                        alt="badge"
+                      />
+                      <div
+                        class="absolute left-0 top-0 w-full h-full inset-y-auto circle-progress-bar"
+                      >
+                        <svg
+                          class="w-full h-full fill-current text-transparent"
+                          viewBox="0 0 100 100"
+                        >
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="none"
+                            stroke="white"
+                            stroke-opacity="0.3"
+                            stroke-width="3"
+                          ></circle>
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="none"
+                            stroke="white"
+                            stroke-width="4"
+                            stroke-dasharray="200"
+                            stroke-dashoffset="30"
+                          ></circle>
+                        </svg>
+                      </div>
                     </div>
-                    </div>
-
                   </div>
                 </div>
               </div>
@@ -73,13 +125,18 @@
                 ipsum nam, dignissimos repellat nesciunt sit cupiditate
                 molestiae odit ab, voluptate consequatur id.
               </p>
-              <button class="md:hidden mt-3 mb-6 w-full shadow bg-gporange text-white text-center font-bold py-4 px-4 rounded">Sign the petition</button>
+              <button
+                class="md:hidden mt-3 mb-6 w-full shadow bg-gporange text-white text-center font-bold py-4 px-4 rounded"
+              >
+                Sign the petition
+              </button>
               <p class="text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                 officiis magni autem laboriosam earum, adipisci itaque odio
                 ipsum nam, dignissimos repellat nesciunt sit cupiditate
                 molestiae odit ab, voluptate consequatur id.
               </p>
+              <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
                 sit iste possimus dolorem illo, animi est enim, sint eos odio ab
                 eveniet id quasi deleniti ex excepturi deserunt voluptatibus
@@ -131,30 +188,29 @@
                   />
                 </div>
                 <div class="form-row flex items-end">
-                    <div class="flex-none">
-                      <input
-                          class="w-16 form-input"
-                          type="text"
-                          placeholder="852"
-                          value="852"
-                        />
-                    </div>
-                    <div class="flex-none mb-3">
-                      <span
-                          class="mx-2 text-gray-400 pointer-events-none"
-                          >-</span
-                        >
-                    </div>
-                    <div class="flex-1">
-                      <label class="form-label">
-                        聯絡電話 Mobile Number
-                      </label>
-                      <input
-                        class="form-input"
-                        type="text"
-                        placeholder="聯絡電話 Mobile Number"
-                      />
-                    </div>
+                  <div class="flex-none">
+                    <input
+                      class="w-16 form-input"
+                      type="text"
+                      placeholder="852"
+                      value="852"
+                    />
+                  </div>
+                  <div class="flex-none mb-3">
+                    <span class="mx-2 text-gray-400 pointer-events-none"
+                      >-</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <label class="form-label">
+                      聯絡電話 Mobile Number
+                    </label>
+                    <input
+                      class="form-input"
+                      type="text"
+                      placeholder="聯絡電話 Mobile Number"
+                    />
+                  </div>
                 </div>
                 <div class="form-row">
                   <label class="form-label">
@@ -242,7 +298,8 @@
             <h2>
               堅守香港海洋最後一道防線
             </h2>
-          </div><form class="form-body">
+          </div>
+          <form class="form-body">
             <div class="mb-8 form-row text-center">
               <h2 class="text-2xl font-bold">Make a change</h2>
               <p class="text-base">
@@ -284,30 +341,27 @@
               />
             </div>
             <div class="form-row flex items-end">
-                <div class="flex-none">
-                  <input
-                      class="w-16 form-input"
-                      type="text"
-                      placeholder="852"
-                      value="852"
-                    />
-                </div>
-                <div class="flex-none mb-3">
-                  <span
-                      class="mx-2 text-gray-400 pointer-events-none"
-                      >-</span
-                    >
-                </div>
-                <div class="flex-1">
-                  <label class="form-label">
-                    聯絡電話 Mobile Number
-                  </label>
-                  <input
-                    class="form-input"
-                    type="text"
-                    placeholder="聯絡電話 Mobile Number"
-                  />
-                </div>
+              <div class="flex-none">
+                <input
+                  class="w-16 form-input"
+                  type="text"
+                  placeholder="852"
+                  value="852"
+                />
+              </div>
+              <div class="flex-none mb-3">
+                <span class="mx-2 text-gray-400 pointer-events-none">-</span>
+              </div>
+              <div class="flex-1">
+                <label class="form-label">
+                  聯絡電話 Mobile Number
+                </label>
+                <input
+                  class="form-input"
+                  type="text"
+                  placeholder="聯絡電話 Mobile Number"
+                />
+              </div>
             </div>
             <div class="form-row">
               <label class="form-label">
@@ -404,6 +458,7 @@
         </div>
       </article>
     </main>
+    <!-- footer -->
     <footer class="footer">
       <div class="container mx-auto">
         <div class="flex flex-wrap">
@@ -452,6 +507,7 @@
         </div>
       </div>
     </footer>
+    <!-- end of footer -->
     <!-- scripts -->
     <script src="./scripts/main.js"></script>
   </body>

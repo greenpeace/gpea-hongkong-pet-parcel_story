@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:400,700,900');
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
+/* normalize.css */
 @import 'normalize.css';
-/* purgecss start ignore */
 @import 'flexboxgrid/css/flexboxgrid.min.css';
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
@@ -11,39 +14,8 @@
 @import './components/form.css';
 /* page styles */
 @import './pages/preference.css';
-
-.participants {
-  @apply flex-1;
-}
-
-.badge {
-  @apply relative;
-}
-
-.line {
-  @apply h-px bg-gray-400 w-11/12 my-8;
-}
-
-.absolute-full {
-  @apply absolute top-0 left-0 w-full h-full;
-}
-
-.hero-overlay {
-  @apply bg-cover bg-center bg-no-repeat;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.07);
-}
-
-.hero-banner {
-  @apply bg-cover bg-center bg-no-repeat;
-  z-index: -2;
-  background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
-}
-
-.article {
-  @apply py-6;
-}
-
+@import './pages/registration.css';
+/* custom styles */
 .text {
   @apply text-base tracking-wide mb-4;
 }
@@ -53,3 +25,5 @@
  * by plugins.
  */
 @tailwind utilities;
+
+@import './utilities/enform.scss';

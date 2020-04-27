@@ -7,27 +7,27 @@ Create a page template using parcel.
 ## Start a local server using
 
 ```javascript
-npm install
-npm run start
+yarn
+yarn start
+```
+
+## Localhost and serve the demo pages
+
+```javascript
+yarn parcel ${page path}
 ```
 
 ## Build the page
 
 ```javascript
-npm run build
+yarn build
 ```
 
 ## Deploy to github page
 
 ```javascript
-npm run build
-npm run deploy
-```
-
-## Develop aother page
-
-```javascript
-parcel / src / preference.html;
+yarn build
+yarn deploy
 ```
 
 ### Parcel as the application bundler
