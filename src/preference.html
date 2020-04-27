@@ -22,37 +22,39 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-   <!-- header -->
-   <header class="header header--green">
-    <div class="container mx-auto flex items-center justify-between">
-      <div>
-        <img
-          class="logo logo--green"
-          src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-green-%5bweb%5d-01.png"
-          alt="logo"
-        />
-        <img
-          class="logo logo--white"
-          src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-white-%5bweb%5d-01.png"
-          alt="logo"
-        />
+    <!-- header -->
+    <header class="header header--green">
+      <div class="container mx-auto flex items-center justify-between">
+        <div>
+          <img
+            class="logo logo--green"
+            src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-green-%5bweb%5d-01.png"
+            alt="logo"
+          />
+          <img
+            class="logo logo--white"
+            src="https://api.greenpeace.org.hk/general/logo/GP-logo-2019-TC-white-%5bweb%5d-01.png"
+            alt="logo"
+          />
+        </div>
+        <div class="nav-button">
+          <a class="btn" data-scroll href="#form-container">立即登記</a>
+        </div>
       </div>
-      <div class="nav-button">
-        <a class="btn" data-scroll href="#form-container">立即登記</a>
-      </div>
-    </div>
-  </header>
-  <!-- end of header -->
+    </header>
+    <!-- end of header -->
     <main id="app" class="main">
       <section class="preference min-h-screen relative">
         <div class="container">
           <div>
             <div class="text-center mb-8">
               <h1 class="text-2xl font-bold">Manage your preferences</h1>
-              <h2 class="text-xl">Your interests:</h3>
+              <h2 class="text-xl">Your interests:</h2>
             </div>
 
-            <div class="preference-card-wrapper grid-cols-3 md:grid-cols-3 xl:grid-cols-6">
+            <div
+              class="preference-card-wrapper grid-cols-3 md:grid-cols-3 xl:grid-cols-6"
+            >
               <div class="preference-card arctic">
                 <img
                   class="w-full"
@@ -144,9 +146,7 @@
               </label>
             </div>
             <div class="form-row">
-              <label class="form-label"
-                ><input type="checkbox" />Email</label
-              >
+              <label class="form-label"><input type="checkbox" />Email</label>
               <input
                 class="form-input"
                 type="text"
