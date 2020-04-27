@@ -1632,6 +1632,10 @@ video {
   align-self: center;
 }
 
+.justify-end{
+  justify-content: flex-end;
+}
+
 .justify-between{
   justify-content: space-between;
 }
@@ -1900,6 +1904,10 @@ video {
   color: #1a202c;
 }
 
+.text-gpgreen{
+  color: #66cc00;
+}
+
 .underline{
   text-decoration: underline;
 }
@@ -2043,4 +2051,4 @@ video {
 }
 
 
-/*# sourceMappingURL=styles.0a0bdd00.css.map */
+/*# sourceMappingURL=styles.75cc1b2b.css.map */
