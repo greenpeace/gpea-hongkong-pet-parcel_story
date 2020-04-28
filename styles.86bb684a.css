@@ -354,9 +354,14 @@ html {
 }
 
 body {
-  font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.main {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .header {
   width: 100%;
@@ -2051,4 +2056,4 @@ video {
 }
 
 
-/*# sourceMappingURL=styles.75cc1b2b.css.map */
+/*# sourceMappingURL=styles.86bb684a.css.map */
