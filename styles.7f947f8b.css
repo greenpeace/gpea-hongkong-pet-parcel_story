@@ -489,7 +489,7 @@ body {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   display: block;
   width: 100%;
-  background-color: #ed8936;
+  background-color: #ff9500;
   color: #fff;
   text-align: center;
   font-weight: 700;
@@ -503,15 +503,17 @@ body {
 .preference {
   margin-left: auto;
   margin-right: auto;
-  padding: 20px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .preference-card-wrapper {
   display: grid;
   grid-gap: 1rem;
   gap: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .preference-card {
@@ -549,9 +551,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
   font-size: 18px;
-  line-height: 2;
   letter-spacing: 4px;
 }
 
@@ -2056,4 +2056,4 @@ video {
 }
 
 
-/*# sourceMappingURL=styles.86bb684a.css.map */
+/*# sourceMappingURL=styles.7f947f8b.css.map */
