@@ -1,10 +1,9 @@
 .preference {
-  @apply mx-auto;
-  padding: 20px;
+  @apply mx-auto px-4 py-4;
 }
 
 .preference-card-wrapper {
-  @apply grid gap-4 my-8;
+  @apply grid gap-4 mb-10;
 }
 
 .preference-card {
@@ -22,9 +21,7 @@
 
 .preference-card-name {
   @apply uppercase absolute w-full left-0 bottom-0 px-4 py-4 font-bold tracking-wider bg-white flex items-center justify-center;
-  min-height: 44px;
   font-size: 18px;
-  line-height: 2;
   letter-spacing: 4px;
 }
 

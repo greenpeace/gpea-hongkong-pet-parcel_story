@@ -3,7 +3,12 @@ html {
 }
 
 body {
-  font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.main {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
 }

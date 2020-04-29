@@ -8,13 +8,13 @@
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
-@import './components/base.css';
-@import './components/header.css';
-@import './components/footer.css';
-@import './components/form.css';
+@import './components/base';
+@import './components/header';
+@import './components/footer';
+@import './components/form';
 /* page styles */
-@import './pages/preference.css';
-@import './pages/registration.css';
+@import './pages/preference';
+@import './pages/registration';
 /* custom styles */
 .text {
   @apply text-base tracking-wide mb-4;
@@ -26,4 +26,4 @@
  */
 @tailwind utilities;
 
-@import './utilities/enform.scss';
+@import './utilities/enform';
