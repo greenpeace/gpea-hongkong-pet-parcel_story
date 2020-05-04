@@ -53,11 +53,11 @@
                 alt=""
               />
             </div>
-            <div class="px-4">
+            <div class="px-4 mb-8">
               <div class="flex flex-wrap justify-between">
-                <div class="mt-8 mb-4">
+                <div class="mt-8">
                   <h1 class="text-4xl font-bold">
-                    <div>拒絕無謂包裝，</div>
+                    <div>拒絕無謂包裝</div>
                     <div>要求超市走塑</div>
                   </h1>
                   <p class="text-base text-gray-700 mt-4">
@@ -88,7 +88,57 @@
               class="sticky form-container self-center md:px-4"
               style="top: 20px;"
             >
-              <form class="form-body">
+              <form class="form-body" id="form">
+                <div class="hidden-fields hidden">
+                  <input type="hidden" name="req" value="post_data" />
+                  <input
+                    type="hidden"
+                    name="LeadSource"
+                    value="%%=v(@LeadSource)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="PetitionIssueType"
+                    value="%%=v(@PetitionIssueType)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="CampaignId"
+                    value="%%=v(@CampaignId)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="UtmMedium"
+                    value="%%=v(@UtmMedium)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="UtmSource"
+                    value="%%=v(@UtmSource)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="UtmCampaign"
+                    value="%%=v(@UtmCampaign)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="UtmContent"
+                    value="%%=v(@UtmContent)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="UtmTerm"
+                    value="%%=v(@UtmTerm)=%%"
+                  />
+                  <input
+                    type="hidden"
+                    name="DonationPageUrl"
+                    value="%%=v(@DonationPageUrl)=%%"
+                  />
+                  <input type="hidden" name="Company" value="null" />
+                  <input name="req" type="hidden" value="post_data" />
+                </div>
                 <div class="mb-8 form-row text-center">
                   <h2 class="text-2xl font-bold">Make a change</h2>
                   <p class="text-base">
@@ -104,6 +154,7 @@
                       <input
                         class="form-input"
                         type="text"
+                        name="LastName"
                         placeholder="姓氏 Last Name"
                       />
                     </div>
@@ -114,6 +165,7 @@
                       <input
                         class="form-input"
                         type="text"
+                        name="FirstName"
                         placeholder="名字 First Name"
                       />
                     </div>
@@ -126,6 +178,7 @@
                   <input
                     type="text"
                     class="form-input"
+                    name="Email"
                     placeholder="電郵地址 Email Address"
                   />
                 </div>
@@ -133,9 +186,9 @@
                   <div class="flex-none">
                     <input
                       class="w-16 form-input"
+                      name="PhoneCode"
                       type="text"
-                      placeholder="852"
-                      value="852"
+                      value="+852"
                     />
                   </div>
                   <div class="flex-none mb-3">
@@ -150,6 +203,7 @@
                     <input
                       class="form-input"
                       type="text"
+                      name="MobilePhone"
                       placeholder="聯絡電話 Mobile Number"
                     />
                   </div>
@@ -162,6 +216,7 @@
                     <input
                       class="form-input"
                       type="text"
+                      name="Birthdate"
                       placeholder="DD/MM/YYYY"
                     />
                     <div
@@ -181,7 +236,12 @@
                 </div>
                 <div class="form-row">
                   <label class="flex items-start">
-                    <input class="mr-2 leading-tight" checked type="checkbox" />
+                    <input
+                      class="mr-2 leading-tight"
+                      name="OptIn"
+                      checked
+                      type="checkbox"
+                    />
                     <span class="form-label">
                       <span class="block text-xs text-gray-600"
                         >我願意收到綠色和平發送的通訊，讓我能掌握環保工作的最新脈動！我同意綠色和平按照<u>個人資料政策</u>與我聯絡，包括提供環保工作資訊及捐款呼籲等。</span

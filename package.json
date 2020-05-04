@@ -7,7 +7,7 @@
     "parcel": "parcel serve",
     "deploy": "yarn build && gh-pages -d dist",
     "build": "yarn clean && parcel build src/*.html --public-url ./ --no-minify",
-    "build:en": "yarn clean && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/cooking/ --no-minify",
+    "build:en": "yarn clean && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/parcel/ --no-minify",
     "clean": "rm -rf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -24,8 +24,12 @@
   "license": "ISC",
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^0.19.2",
+    "cleave.js": "^1.5.10",
     "flexboxgrid": "^6.3.1",
+    "imask": "^6.0.3",
     "jquery": "^3.5.0",
+    "js-datepicker": "^5.11.0",
     "normalize.css": "^8.0.1",
     "polyfill": "^0.1.0",
     "remove-focus-outline": "^1.2.1",
