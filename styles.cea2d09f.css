@@ -1183,7 +1183,8 @@ body {
 }
 
 .main {
-  max-width: 1600px;
+  width: 100%;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1197,6 +1198,10 @@ body {
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.4);
 }
 
+.header--white {
+  background-color: #fff;
+}
+
 .header--green {
   background-color: #66cc00;
 }
@@ -1205,6 +1210,10 @@ body {
   object-fit: contain;
   height: 20px;
   z-index: 1;
+}
+
+.header--white .logo--white {
+  display: none;
 }
 
 .header--green .logo--green {
@@ -1318,11 +1327,12 @@ body {
   color: #fff;
   text-align: center;
   font-weight: 700;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.25rem;
+  font-size: 20px;
 }
 
 /* page styles */
@@ -1435,15 +1445,15 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.07);
+  background-image: radial-gradient(#064188 5%, #011952 100%);
 }
 
 .hero-banner {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -2;
-  background-image: url("https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg");
+  z-index: -1;
+  background-image: url("https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPA6O.jpg");
 }
 
 .article {
@@ -1665,6 +1675,11 @@ body {
 .my-0{
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.mx-1{
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .my-2{
@@ -2098,4 +2113,4 @@ body {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
-/*# sourceMappingURL=styles.3417a320.css.map */
+/*# sourceMappingURL=styles.cea2d09f.css.map */

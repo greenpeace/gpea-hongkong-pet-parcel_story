@@ -1696,8 +1696,14 @@ button.bg-white:focus {
   margin-bottom: 0 !important;
 }
 
-.mr-1 {
+.mr-1,
+.mx-1 {
   margin-right: 0.25rem !important;
+}
+
+
+.mx-1 {
+  margin-left: 0.25rem !important;
 }
 
 .mt-2,
@@ -4824,4 +4830,4 @@ header {
 @media (min-width: 768px) {
 }
 
-/*# sourceMappingURL=argon-design-system.004db458.css.map */
+/*# sourceMappingURL=argon-design-system.9691c189.css.map */
