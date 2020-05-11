@@ -14,7 +14,7 @@ yarn start
 ## Localhost and serve the demo pages
 
 ```javascript
-yarn parcel ${page path}
+yarn parcel ${page path} // e.g src/petition.html
 ```
 
 ## Build the page

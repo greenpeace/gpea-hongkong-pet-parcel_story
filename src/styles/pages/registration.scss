@@ -1,0 +1,59 @@
+.line {
+  @apply h-px bg-gray-400 w-11/12 my-8;
+}
+
+.absolute-full {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.hero-overlay {
+  @apply bg-cover bg-center bg-no-repeat;
+  z-index: -1;
+  background-image: radial-gradient(#064188 5%, #011952 100%);
+}
+
+.hero-banner {
+  @apply bg-cover bg-center bg-no-repeat;
+  z-index: -1;
+  background-image: url('https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPA6O.jpg');
+  // https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg
+  // https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/LOW_GP0STPATO.jpg
+}
+
+.article {
+  @apply py-6;
+}
+
+.speakers {
+  @apply w-full my-8 flex;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.speaker {
+  @apply flex flex-col items-center overflow-hidden text-center;
+}
+
+.speaker__avatar {
+  @apply rounded-full h-32 w-32 flex-shrink-0 object-cover;
+}
+.speaker p {
+  display: none;
+}
+
+.speaker + .speaker {
+  margin-left: 20px;
+}
+
+.participants {
+  @apply flex-1;
+}
+
+.badge {
+  @apply relative;
+}

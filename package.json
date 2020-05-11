@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "a boilerplate with parcel and storybook",
   "scripts": {
+    "start": "parcel serve src/index.html",
     "parcel": "parcel serve",
     "deploy": "yarn build && gh-pages -d dist",
-    "build": "rm -rf dist && parcel build src/*.html --public-url ./ --no-minify",
-    "build:en": "rm -rf dist && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/cooking/ --no-minify",
+    "build": "yarn clean && parcel build src/*.html --public-url ./ --no-minify",
+    "build:en": "yarn clean && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/parcel/ --no-minify",
     "clean": "rm -rf dist",
-    "start": "parcel serve src/index.html",
-    "format": "prettier --write 'src/**/*.{md,js,css,json}'",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -25,11 +23,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "cleave.js": "^1.5.10",
     "flexboxgrid": "^6.3.1",
+    "jquery": "^3.5.0",
+    "js-datepicker": "^5.11.0",
     "normalize.css": "^8.0.1",
+    "polyfill": "^0.1.0",
+    "remove-focus-outline": "^1.2.1",
     "smooth-scroll": "^16.1.3",
-    "swiper": "^5.3.7",
-    "tailwindcss": "^1.2.0"
+    "swiper": "^5.3.8",
+    "tailwindcss": "^1.2.0",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
