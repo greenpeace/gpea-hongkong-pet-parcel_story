@@ -19,13 +19,13 @@ phoneCode();
 const fistNameField = document.querySelector('input[name="FirstName"]');
 const mobileField = document.querySelector('input[name="MobilePhone"]');
 const birthDateField = document.querySelector('input[name="Birthdate"]');
-const phoneCodeCleave = new Cleave('input[name="PhoneCode"]', {
+const phoneCodeCleave = new Cleave('*[name="PhoneCode"]', {
   numericOnly: true,
   prefix: '+',
   delimiter: '',
   blocks: [1, 3],
 });
-document.querySelector('input[name="PhoneCode"]').value = '+852';
+document.querySelector('*[name="PhoneCode"]').value = '+852';
 
 const mobileCleave = new Cleave('input[name="MobilePhone"]', {
   numericOnly: true,
@@ -36,21 +36,24 @@ const birthDateCleave = new Cleave('input[name="Birthdate"]', {
   date: true,
   datePattern: ['d', 'm', 'Y'],
   blocks: [2, 2, 4],
-  delimiters: ['/', '/', '/'],
+  delimiters: ['/', '/'],
 });
 //
+/*
 const picker = datepicker('input[name="Birthdate"]', {
   dateFormat: 'dd/mm/yyyy',
   position: 'tl',
   startDay: 1,
   customDays: ['日', '一', '二', '三', '四', '五', '六'],
+  overlayPlaceholder: 'YYYY',
+  overlayButton: '選擇',
   formatter: (input, date, instance) => {
     const value = date.toLocaleDateString();
     input.value = value;
   },
   disableMobile: true,
-  disableYearOverlay: true,
 });
+*/
 //
 document.addEventListener('DOMContentLoaded', function (event) {
   const Scroll = new SmoothScroll('a[href*="#"]');

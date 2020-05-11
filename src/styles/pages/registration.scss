@@ -9,13 +9,15 @@
 .hero-overlay {
   @apply bg-cover bg-center bg-no-repeat;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.07);
+  background-image: radial-gradient(#064188 5%, #011952 100%);
 }
 
 .hero-banner {
   @apply bg-cover bg-center bg-no-repeat;
-  z-index: -2;
-  background-image: url('https://peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg');
+  z-index: -1;
+  background-image: url('https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPA6O.jpg');
+  // https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPBDA_PressMedia.jpg
+  // https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/LOW_GP0STPATO.jpg
 }
 
 .article {

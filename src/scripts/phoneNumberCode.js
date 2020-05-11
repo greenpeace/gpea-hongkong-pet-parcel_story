@@ -246,13 +246,14 @@ export default function () {
     MZ: '258',
   };
 
-  var phoneCode = document.querySelector('input[name="PhoneCode"]');
+  var phoneCode = document.querySelector('*[name="PhoneCode"]');
 
   let c = document.createDocumentFragment();
   for (let i in code) {
-    let opt = document.createElement('option');
-    opt.innerHTML = `<option value="+${code[i]}">${code[i]} ${i}</option>`;
-    c.appendChild(opt);
+    let option = document.createElement('option');
+    option.value = `+${code[i]}`;
+    option.text = `${code[i]} ${i}`;
+    c.appendChild(option);
   }
 
   phoneCode.append(c);
