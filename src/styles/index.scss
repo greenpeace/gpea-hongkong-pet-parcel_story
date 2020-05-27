@@ -10,11 +10,13 @@
 /* purgecss end ignore */
 @import './components/index';
 /* page styles */
-@import './pages/preference';
-@import './pages/registration';
+@import './pages/index';
 /* custom styles */
 .text {
   @apply text-base tracking-wide mb-4;
+}
+.credit-line {
+  @apply text-sm;
 }
 /**
  * This injects Tailwind's utility classes and any utility classes registered
