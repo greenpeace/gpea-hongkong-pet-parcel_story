@@ -161,85 +161,140 @@ window.Element&&!Element.prototype.closest&&(Element.prototype.closest=function(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.document = exports.window = void 0;
+exports.extend = extend;
+exports.window = exports.document = void 0;
 
 /**
- * SSR Window 1.0.1
+ * SSR Window 2.0.0
  * Better handling for window object in SSR environment
  * https://github.com/nolimits4web/ssr-window
  *
- * Copyright 2018, Vladimir Kharlampidi
+ * Copyright 2020, Vladimir Kharlampidi
  *
  * Licensed under MIT
  *
- * Released on: July 18, 2018
+ * Released on: May 12, 2020
  */
-var doc = typeof document === 'undefined' ? {
+
+/* eslint-disable no-param-reassign */
+function isObject(obj) {
+  return obj !== null && typeof obj === 'object' && 'constructor' in obj && obj.constructor === Object;
+}
+
+function extend(target, src) {
+  if (target === void 0) {
+    target = {};
+  }
+
+  if (src === void 0) {
+    src = {};
+  }
+
+  Object.keys(src).forEach(function (key) {
+    if (typeof target[key] === 'undefined') target[key] = src[key];else if (isObject(src[key]) && isObject(target[key]) && Object.keys(src[key]).length > 0) {
+      extend(target[key], src[key]);
+    }
+  });
+}
+
+var doc = typeof document !== 'undefined' ? document : {};
+exports.document = doc;
+var ssrDocument = {
   body: {},
-  addEventListener: function addEventListener() {},
-  removeEventListener: function removeEventListener() {},
+  addEventListener: function () {},
+  removeEventListener: function () {},
   activeElement: {
-    blur: function blur() {},
+    blur: function () {},
     nodeName: ''
   },
-  querySelector: function querySelector() {
+  querySelector: function () {
     return null;
   },
-  querySelectorAll: function querySelectorAll() {
+  querySelectorAll: function () {
     return [];
   },
-  getElementById: function getElementById() {
+  getElementById: function () {
     return null;
   },
-  createEvent: function createEvent() {
+  createEvent: function () {
     return {
-      initEvent: function initEvent() {}
+      initEvent: function () {}
     };
   },
-  createElement: function createElement() {
+  createElement: function () {
     return {
       children: [],
       childNodes: [],
       style: {},
-      setAttribute: function setAttribute() {},
-      getElementsByTagName: function getElementsByTagName() {
+      setAttribute: function () {},
+      getElementsByTagName: function () {
         return [];
       }
     };
   },
+  createElementNS: function () {
+    return {};
+  },
+  importNode: function () {
+    return null;
+  },
   location: {
-    hash: ''
+    hash: '',
+    host: '',
+    hostname: '',
+    href: '',
+    origin: '',
+    pathname: '',
+    protocol: '',
+    search: ''
   }
-} : document; // eslint-disable-line
-
-exports.document = doc;
-var win = typeof window === 'undefined' ? {
-  document: doc,
+};
+extend(doc, ssrDocument);
+var win = typeof window !== 'undefined' ? window : {};
+exports.window = win;
+var ssrWindow = {
+  document: ssrDocument,
   navigator: {
     userAgent: ''
   },
-  location: {},
-  history: {},
+  location: {
+    hash: '',
+    host: '',
+    hostname: '',
+    href: '',
+    origin: '',
+    pathname: '',
+    protocol: '',
+    search: ''
+  },
+  history: {
+    replaceState: function () {},
+    pushState: function () {},
+    go: function () {},
+    back: function () {}
+  },
   CustomEvent: function CustomEvent() {
     return this;
   },
-  addEventListener: function addEventListener() {},
-  removeEventListener: function removeEventListener() {},
-  getComputedStyle: function getComputedStyle() {
+  addEventListener: function () {},
+  removeEventListener: function () {},
+  getComputedStyle: function () {
     return {
-      getPropertyValue: function getPropertyValue() {
+      getPropertyValue: function () {
         return '';
       }
     };
   },
-  Image: function Image() {},
-  Date: function Date() {},
+  Image: function () {},
+  Date: function () {},
   screen: {},
-  setTimeout: function setTimeout() {},
-  clearTimeout: function clearTimeout() {}
-} : window; // eslint-disable-line
-
-exports.window = win;
+  setTimeout: function () {},
+  clearTimeout: function () {},
+  matchMedia: function () {
+    return {};
+  }
+};
+extend(win, ssrWindow);
 },{}],"vnpi":[function(require,module,exports) {
 "use strict";
 
@@ -337,17 +392,17 @@ exports.scroll = scroll;
 var _ssrWindow = require("ssr-window");
 
 /**
- * Dom7 2.1.3
+ * Dom7 2.1.5
  * Minimalistic JavaScript library for DOM manipulation, with a jQuery-compatible API
  * http://framework7.io/docs/dom.html
  *
- * Copyright 2019, Vladimir Kharlampidi
+ * Copyright 2020, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us/
  *
  * Licensed under MIT
  *
- * Released on: February 11, 2019
+ * Released on: May 15, 2020
  */
 class Dom7 {
   constructor(arr) {
@@ -1969,7 +2024,7 @@ var _dom = require("dom7/dist/dom7.modular");
 var _ssrWindow = require("ssr-window");
 
 /**
- * Swiper 5.3.8
+ * Swiper 5.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * http://swiperjs.com
  *
@@ -1977,7 +2032,7 @@ var _ssrWindow = require("ssr-window");
  *
  * Released under the MIT License
  *
- * Released on: April 24, 2020
+ * Released on: May 20, 2020
  */
 const Methods = {
   addClass: _dom.addClass,
@@ -2145,10 +2200,8 @@ const Utils = {
 
 const Support = function Support() {
   return {
-    touch: _ssrWindow.window.Modernizr && _ssrWindow.window.Modernizr.touch === true || function checkTouch() {
-      return !!(_ssrWindow.window.navigator.maxTouchPoints > 0 || 'ontouchstart' in _ssrWindow.window || _ssrWindow.window.DocumentTouch && _ssrWindow.document instanceof _ssrWindow.window.DocumentTouch);
-    }(),
-    pointerEvents: !!_ssrWindow.window.PointerEvent && 'maxTouchPoints' in _ssrWindow.window.navigator && _ssrWindow.window.navigator.maxTouchPoints > 0,
+    touch: !!('ontouchstart' in _ssrWindow.window || _ssrWindow.window.DocumentTouch && _ssrWindow.document instanceof _ssrWindow.window.DocumentTouch),
+    pointerEvents: !!_ssrWindow.window.PointerEvent && 'maxTouchPoints' in _ssrWindow.window.navigator && _ssrWindow.window.navigator.maxTouchPoints >= 0,
     observer: function checkObserver() {
       return 'MutationObserver' in _ssrWindow.window || 'WebkitMutationObserver' in _ssrWindow.window;
     }(),
@@ -4152,7 +4205,7 @@ function onTouchMove(event) {
     return;
   }
 
-  if (data.isTouchEvent && e.type === 'mousemove') return;
+  if (data.isTouchEvent && e.type !== 'touchmove') return;
   const targetTouch = e.type === 'touchmove' && e.targetTouches && (e.targetTouches[0] || e.changedTouches[0]);
   const pageX = e.type === 'touchmove' ? targetTouch.pageX : e.pageX;
   const pageY = e.type === 'touchmove' ? targetTouch.pageY : e.pageY;
@@ -4247,7 +4300,7 @@ function onTouchMove(event) {
 
   swiper.allowClick = false;
 
-  if (!params.cssMode) {
+  if (!params.cssMode && e.cancelable) {
     e.preventDefault();
   }
 
@@ -5093,7 +5146,9 @@ function loadImage(imageEl, src, srcset, sizes, checkForComplete, callback) {
     if (callback) callback();
   }
 
-  if (!imageEl.complete || !checkForComplete) {
+  const isPicture = (0, _dom.$)(imageEl).parent('picture')[0];
+
+  if (!isPicture && (!imageEl.complete || !checkForComplete)) {
     if (src) {
       image = new _ssrWindow.window.Image();
       image.onload = onReady;
@@ -6515,7 +6570,7 @@ const Mousewheel = {
       //     Animate the slider.
 
       if (prevEvent) {
-        if (newEvent.direction !== prevEvent.direction || newEvent.delta > prevEvent.delta) {
+        if (newEvent.direction !== prevEvent.direction || newEvent.delta > prevEvent.delta || newEvent.time > prevEvent.time + 150) {
           swiper.mousewheel.animateSlider(newEvent);
         }
       } else {
@@ -8026,7 +8081,7 @@ const Zoom = {
     } = zoom;
     if (!gesture.$imageEl || gesture.$imageEl.length === 0) return;
     if (image.isTouched) return;
-    if (Device.android) e.preventDefault();
+    if (Device.android && e.cancelable) e.preventDefault();
     image.isTouched = true;
     image.touchesStart.x = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
     image.touchesStart.y = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
@@ -8082,7 +8137,10 @@ const Zoom = {
       }
     }
 
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+
     e.stopPropagation();
     image.isMoved = true;
     image.currentX = image.touchesCurrent.x - image.touchesStart.x + image.startX;
@@ -8539,6 +8597,7 @@ const Lazy = {
       const src = $imageEl.attr('data-src');
       const srcset = $imageEl.attr('data-srcset');
       const sizes = $imageEl.attr('data-sizes');
+      const $pictureEl = $imageEl.parent('picture');
       swiper.loadImage($imageEl[0], src || background, srcset, sizes, false, () => {
         if (typeof swiper === 'undefined' || swiper === null || !swiper || swiper && !swiper.params || swiper.destroyed) return;
 
@@ -8554,6 +8613,17 @@ const Lazy = {
           if (sizes) {
             $imageEl.attr('sizes', sizes);
             $imageEl.removeAttr('data-sizes');
+          }
+
+          if ($pictureEl.length) {
+            $pictureEl.children('source').each((sourceIndex, sourceEl) => {
+              const $source = (0, _dom.$)(sourceEl);
+
+              if ($source.attr('data-srcset')) {
+                $source.attr('srcset', $source.attr('data-srcset'));
+                $source.removeAttr('data-srcset');
+              }
+            });
           }
 
           if (src) {
@@ -8974,6 +9044,11 @@ const a11y = {
     return $el;
   },
 
+  makeElNotFocusable($el) {
+    $el.attr('tabIndex', '-1');
+    return $el;
+  },
+
   addElRole($el, role) {
     $el.attr('role', role);
     return $el;
@@ -9048,16 +9123,20 @@ const a11y = {
     if ($prevEl && $prevEl.length > 0) {
       if (swiper.isBeginning) {
         swiper.a11y.disableEl($prevEl);
+        swiper.a11y.makeElNotFocusable($prevEl);
       } else {
         swiper.a11y.enableEl($prevEl);
+        swiper.a11y.makeElFocusable($prevEl);
       }
     }
 
     if ($nextEl && $nextEl.length > 0) {
       if (swiper.isEnd) {
         swiper.a11y.disableEl($nextEl);
+        swiper.a11y.makeElNotFocusable($nextEl);
       } else {
         swiper.a11y.enableEl($nextEl);
+        swiper.a11y.makeElFocusable($nextEl);
       }
     }
   },
@@ -9360,6 +9439,7 @@ var History$1 = {
 const HashNavigation = {
   onHashCange() {
     const swiper = this;
+    swiper.emit('hashChange');
 
     const newHash = _ssrWindow.document.location.hash.replace('#', '');
 
@@ -9378,10 +9458,13 @@ const HashNavigation = {
 
     if (swiper.params.hashNavigation.replaceState && _ssrWindow.window.history && _ssrWindow.window.history.replaceState) {
       _ssrWindow.window.history.replaceState(null, null, `#${swiper.slides.eq(swiper.activeIndex).attr('data-hash')}` || '');
+
+      swiper.emit('hashSet');
     } else {
       const slide = swiper.slides.eq(swiper.activeIndex);
       const hash = slide.attr('data-hash') || slide.attr('data-history');
       _ssrWindow.document.location.hash = hash || '';
+      swiper.emit('hashSet');
     }
   },
 
@@ -11048,7 +11131,7 @@ add('non-standard', [
     'String.prototype.substr' 
 ])
 
-},{"fs":"rDCW","path":"UUq2"}],"gnhW":[function(require,module,exports) {
+},{"fs":"rDCW","path":"UUq2"}],"SpjQ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16131,7 +16214,7 @@ var Condition = /*#__PURE__*/function () {
 
 var _default = Condition;
 exports.default = _default;
-},{"lodash-es/has":"rUc4","./util/isSchema":"nUqY"}],"JQKH":[function(require,module,exports) {
+},{"lodash-es/has":"rUc4","./util/isSchema":"nUqY"}],"Vabl":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16180,6 +16263,10 @@ function SynchronousPromise(handler) {
 
 function looksLikeAPromise(obj) {
   return obj && typeof (obj.then) === "function";
+}
+
+function passThrough(value) {
+  return value;
 }
 
 SynchronousPromise.prototype = {
@@ -16231,14 +16318,32 @@ SynchronousPromise.prototype = {
   },
   finally: function(callback) {
     var ran = false;
-    function runFinally() {
+    function runFinally(result, err) {
       if (!ran) {
         ran = true;
-        return callback();
+        if (!callback) {
+          callback = passThrough;
+        }
+        var callbackResult = callback(result);
+        if (looksLikeAPromise(callbackResult)) {
+          return callbackResult.then(function() {
+            if (err) {
+              throw err;
+            }
+            return result;
+          });
+        } else {
+          return result;
+        }
       }
     }
-    return this.then(runFinally)
-      .catch(runFinally);
+    return this
+      .then(function(result) {
+        return runFinally(result);
+      })
+      .catch(function(err) {
+        return runFinally(null, err);
+      });
   },
   pause: function () {
     this._paused = true;
@@ -16324,7 +16429,6 @@ SynchronousPromise.prototype = {
           var catchResult = cont.catchFn(error);
           self._handleUserFunctionResult(catchResult, cont.promise);
         } catch (e) {
-          var message = e.message;
           cont.promise.reject(e);
         }
       } else {
@@ -16685,7 +16789,7 @@ function runValidations(_ref3) {
   if (endEarly) return scopeToValue(options.validations, options.value, options.sync);
   return collectErrors(options);
 }
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"JQKH","synchronous-promise":"Y49f","../ValidationError":"MJoG"}],"YGRk":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","synchronous-promise":"Y49f","../ValidationError":"MJoG"}],"YGRk":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18284,7 +18388,7 @@ var Reference = /*#__PURE__*/function () {
 
 exports.default = Reference;
 Reference.prototype.__isYupRef = true;
-},{"@babel/runtime/helpers/esm/extends":"gnhW","property-expr":"s2GA"}],"pqjc":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","property-expr":"s2GA"}],"pqjc":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18406,7 +18510,7 @@ function createValidation(options) {
   validate.OPTIONS = options;
   return validate;
 }
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"JQKH","@babel/runtime/helpers/esm/extends":"gnhW","lodash-es/mapValues":"hf3P","../ValidationError":"MJoG","../Reference":"o3ZA","synchronous-promise":"Y49f"}],"ma5Y":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","@babel/runtime/helpers/esm/extends":"SpjQ","lodash-es/mapValues":"hf3P","../ValidationError":"MJoG","../Reference":"o3ZA","synchronous-promise":"Y49f"}],"ma5Y":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19102,7 +19206,7 @@ for (var _i3 = 0, _arr3 = ['not', 'nope']; _i3 < _arr3.length; _i3++) {
 }
 
 proto.optional = proto.notRequired;
-},{"@babel/runtime/helpers/esm/extends":"gnhW","lodash-es/has":"rUc4","lodash-es/cloneDeepWith":"Gtab","lodash-es/toArray":"lGJm","./locale":"PWgw","./Condition":"kSb0","./util/runValidations":"hytY","./util/prependDeep":"YGRk","./util/isSchema":"nUqY","./util/createValidation":"pqjc","./util/printValue":"FfQw","./Reference":"o3ZA","./util/reach":"ma5Y"}],"OX4e":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","lodash-es/has":"rUc4","lodash-es/cloneDeepWith":"Gtab","lodash-es/toArray":"lGJm","./locale":"PWgw","./Condition":"kSb0","./util/runValidations":"hytY","./util/prependDeep":"YGRk","./util/isSchema":"nUqY","./util/createValidation":"pqjc","./util/printValue":"FfQw","./Reference":"o3ZA","./util/reach":"ma5Y"}],"OX4e":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19125,7 +19229,7 @@ function inherits(ctor, superCtor, spec) {
   });
   (0, _extends2.default)(ctor.prototype, spec);
 }
-},{"@babel/runtime/helpers/esm/extends":"gnhW"}],"Cr5G":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ"}],"Cr5G":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19702,7 +19806,7 @@ function DateSchema() {
     });
   }
 });
-},{"./mixed":"ICGQ","./util/inherits":"OX4e","./util/isodate":"Wi2t","./locale":"PWgw","./util/isAbsent":"XzeX","./Reference":"o3ZA"}],"qkA6":[function(require,module,exports) {
+},{"./mixed":"ICGQ","./util/inherits":"OX4e","./util/isodate":"Wi2t","./locale":"PWgw","./util/isAbsent":"XzeX","./Reference":"o3ZA"}],"fxV2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21110,7 +21214,7 @@ function ObjectSchema(spec) {
     return base;
   }
 });
-},{"@babel/runtime/helpers/esm/taggedTemplateLiteralLoose":"qkA6","@babel/runtime/helpers/esm/extends":"gnhW","lodash-es/has":"rUc4","lodash-es/snakeCase":"o9Vb","lodash-es/camelCase":"N7rr","lodash-es/mapKeys":"xX98","lodash-es/mapValues":"hf3P","property-expr":"s2GA","./mixed":"ICGQ","./locale.js":"PWgw","./util/sortFields":"p88W","./util/sortByKeyOrder":"aoUL","./util/inherits":"OX4e","./util/makePath":"q3mD","./util/runValidations":"hytY","synchronous-promise":"Y49f"}],"PxSx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/taggedTemplateLiteralLoose":"fxV2","@babel/runtime/helpers/esm/extends":"SpjQ","lodash-es/has":"rUc4","lodash-es/snakeCase":"o9Vb","lodash-es/camelCase":"N7rr","lodash-es/mapKeys":"xX98","lodash-es/mapValues":"hf3P","property-expr":"s2GA","./mixed":"ICGQ","./locale.js":"PWgw","./util/sortFields":"p88W","./util/sortByKeyOrder":"aoUL","./util/inherits":"OX4e","./util/makePath":"q3mD","./util/runValidations":"hytY","synchronous-promise":"Y49f"}],"PxSx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21331,7 +21435,7 @@ function ArraySchema(type) {
     return base;
   }
 });
-},{"@babel/runtime/helpers/esm/taggedTemplateLiteralLoose":"qkA6","@babel/runtime/helpers/esm/extends":"gnhW","./util/inherits":"OX4e","./util/isAbsent":"XzeX","./util/isSchema":"nUqY","./util/makePath":"q3mD","./util/printValue":"FfQw","./mixed":"ICGQ","./locale":"PWgw","./util/runValidations":"hytY"}],"oWqA":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/taggedTemplateLiteralLoose":"fxV2","@babel/runtime/helpers/esm/extends":"SpjQ","./util/inherits":"OX4e","./util/isAbsent":"XzeX","./util/isSchema":"nUqY","./util/makePath":"q3mD","./util/printValue":"FfQw","./mixed":"ICGQ","./locale":"PWgw","./util/runValidations":"hytY"}],"oWqA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23086,7 +23190,7 @@ var global = arguments[3];
 var process = require("process");
 var define;
 /*!
- * jQuery JavaScript Library v3.5.0
+ * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -23096,7 +23200,7 @@ var define;
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-04-10T15:07Z
+ * Date: 2020-05-04T22:49Z
  */
 ( function( global, factory ) {
 
@@ -23234,7 +23338,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.0",
+	version = "3.5.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -27331,7 +27435,7 @@ Data.prototype = {
 
 		// If not, create one
 		if ( !value ) {
-			value = Object.create( null );
+			value = {};
 
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
@@ -33968,12 +34072,12 @@ var define;
 
     function n(a) {
       if (t[a]) return t[a].exports;
-      var i = t[a] = {
+      var r = t[a] = {
         i: a,
         l: !1,
         exports: {}
       };
-      return e[a].call(i.exports, i, i.exports, n), i.l = !0, i.exports;
+      return e[a].call(r.exports, r, r.exports, n), r.l = !0, r.exports;
     }
 
     return n.m = e, n.c = t, n.d = function (e, t, a) {
@@ -33994,9 +34098,9 @@ var define;
       if (n.r(a), Object.defineProperty(a, "default", {
         enumerable: !0,
         value: e
-      }), 2 & t && "string" != typeof e) for (var i in e) n.d(a, i, function (t) {
+      }), 2 & t && "string" != typeof e) for (var r in e) n.d(a, r, function (t) {
         return e[t];
-      }.bind(null, i));
+      }.bind(null, r));
       return a;
     }, n.n = function (e) {
       var t = e && e.__esModule ? function () {
@@ -34009,11 +34113,14 @@ var define;
       return Object.prototype.hasOwnProperty.call(e, t);
     }, n.p = "", n(n.s = 0);
   }([function (e, t, n) {
+    "use strict";
+
+    n.r(t);
     n(1);
     var a = [],
-        i = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        o = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        r = {
+        r = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        i = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        o = {
       t: "top",
       r: "right",
       b: "bottom",
@@ -34027,12 +34134,12 @@ var define;
 
     function d(e) {
       l.forEach(function (t) {
-        e.addEventListener(t, e === document ? j : E);
+        e.addEventListener(t, e === document ? Y : L);
       });
     }
 
     function c(e) {
-      return Array.isArray(e) ? e.map(c) : "[object Object]" === C(e) ? Object.keys(e).reduce(function (t, n) {
+      return Array.isArray(e) ? e.map(c) : "[object Object]" === j(e) ? Object.keys(e).reduce(function (t, n) {
         return t[n] = c(e[n]), t;
       }, {}) : e;
     }
@@ -34051,54 +34158,48 @@ var define;
 
     function f(e, t, n) {
       var a = t.currentMonth,
-          i = t.currentYear,
-          o = t.dateSelected,
-          r = t.maxDate,
+          r = t.currentYear,
+          i = t.dateSelected,
+          o = t.maxDate,
           s = t.minDate,
           l = t.showAllDates,
           d = t.days,
           c = t.disabledDates,
-          u = t.disabler,
-          h = t.noWeekends,
-          f = t.startDay,
-          v = t.weekendIndices,
-          m = t.events,
-          p = t.getRange ? t.getRange() : {},
-          y = +p.start,
-          D = +p.end,
-          b = new Date(),
-          g = i === b.getFullYear() && a === b.getMonth(),
-          w = q(new Date(e).setDate(1)),
-          S = w.getDay() - f,
-          M = S < 0 ? 7 : 0;
-      w.setMonth(w.getMonth() + 1), w.setDate(0);
-      var x = w.getDate(),
-          C = [],
-          Y = M + 7 * ((S + x) / 7 | 0);
-      Y += (S + x) % 7 ? 7 : 0;
+          u = t.startDay,
+          h = (t.weekendIndices, t.events),
+          f = t.getRange ? t.getRange() : {},
+          v = +f.start,
+          m = +f.end,
+          y = q(new Date(e).setDate(1)),
+          p = y.getDay() - u,
+          D = p < 0 ? 7 : 0;
+      y.setMonth(y.getMonth() + 1), y.setDate(0);
+      var b = y.getDate(),
+          g = [],
+          w = D + 7 * ((p + b) / 7 | 0);
+      w += (p + b) % 7 ? 7 : 0;
 
-      for (var j = 1; j <= Y; j++) {
-        var E = (j - 1) % 7,
-            L = d[E],
-            P = j - (S >= 0 ? S : 7 + S),
-            k = new Date(i, a, P),
-            O = m[+k],
-            N = "qs-num",
-            _ = '<span class="qs-num">' + k.getDate() + "</span>",
-            I = y && D && +k >= y && +k <= D;
+      for (var S = 1; S <= w; S++) {
+        var M = (S - 1) % 7,
+            x = d[M],
+            j = S - (p >= 0 ? p : 7 + p),
+            C = new Date(r, a, j),
+            Y = h[+C],
+            L = j < 1 || j > b,
+            E = L ? j < 1 ? -1 : 1 : 0,
+            P = L && !l,
+            k = P ? "" : C.getDate(),
+            O = 0 === M || 6 === M,
+            N = v !== m,
+            _ = "qs-square " + x;
 
-        P < 1 || P > x ? (N = "qs-empty qs-outside-current-month", l ? (O && (N += " qs-event"), N += " qs-disabled") : _ = "") : ((s && k < s || r && k > r || u(k) || c.some(function (e) {
-          return e === +k;
-        }) || h && v.some(function (e) {
-          return e === E;
-        })) && (N = "qs-disabled"), O && (N += " qs-event"), g && P === b.getDate() && (N += " qs-current"), +k == +o && (N += " qs-active"), I && (N += " qs-range-date-" + E, y !== D && (N += +k === y ? " qs-range-date-start qs-active" : +k === D ? " qs-range-date-end qs-active" : " qs-range-date-middle"))), C.push('<div class="qs-square ' + N + " " + L + '">' + _ + "</div>");
+        Y && !P && (_ += " qs-event"), L && (_ += " qs-outside-current-month"), !l && L || (_ += " qs-num"), +C == +i && (_ += " qs-active"), (c[+C] || t.disabler(C) || O && t.noWeekends || s && +C < +s || o && +C > +o) && !P && (_ += " qs-disabled"), +q(new Date()) == +C && (_ += " qs-current"), +C === v && m && N && (_ += " qs-range-start"), +C > v && +C < m && (_ += " qs-range-middle"), +C === m && v && N && (_ += " qs-range-end"), P && (_ += " qs-empty", k = ""), g.push('<div class="' + _ + '" data-direction="' + E + '">' + k + "</div>");
       }
 
-      var R = d.map(function (e) {
+      var I = d.map(function (e) {
         return '<div class="qs-square qs-day">' + e + "</div>";
-      }).concat(C);
-      if (R.length % 7 != 0) throw "Calendar not constructed properly. The # of squares should be a multiple of 7.";
-      return R.unshift('<div class="qs-squares' + (n ? " qs-blur" : "") + '">'), R.push("</div>"), R.join("");
+      }).concat(g);
+      return I.unshift('<div class="qs-squares' + (n ? " qs-blur" : "") + '">'), I.push("</div>"), I.join("");
     }
 
     function v(e, t) {
@@ -34111,22 +34212,22 @@ var define;
 
     function m(e, t, n) {
       var a = t.el,
-          i = t.calendar.querySelector(".qs-active"),
-          o = e.textContent,
-          r = t.sibling;
-      (a.disabled || a.readOnly) && t.respectDisabledReadOnly || (t.dateSelected = n ? void 0 : new Date(t.currentYear, t.currentMonth, o), i && i.classList.remove("qs-active"), n || e.classList.add("qs-active"), y(a, t, n), n || w(t), r && (p({
+          r = t.calendar.querySelector(".qs-active"),
+          i = e.textContent,
+          o = t.sibling;
+      (a.disabled || a.readOnly) && t.respectDisabledReadOnly || (t.dateSelected = n ? void 0 : new Date(t.currentYear, t.currentMonth, i), r && r.classList.remove("qs-active"), n || e.classList.add("qs-active"), p(a, t, n), n || w(t), o && (y({
         instance: t,
         deselect: n
-      }), t.first && !r.dateSelected && (r.currentYear = t.currentYear, r.currentMonth = t.currentMonth, r.currentMonthName = t.currentMonthName), u(t), u(r)), t.onSelect(t, n ? void 0 : new Date(t.dateSelected)));
+      }), t.first && !o.dateSelected && (o.currentYear = t.currentYear, o.currentMonth = t.currentMonth, o.currentMonthName = t.currentMonthName), u(t), u(o)), t.onSelect(t, n ? void 0 : new Date(t.dateSelected)));
     }
 
-    function p(e) {
+    function y(e) {
       var t = e.instance.first ? e.instance : e.instance.sibling,
           n = t.sibling;
       t === e.instance ? e.deselect ? (t.minDate = t.originalMinDate, n.minDate = n.originalMinDate) : n.minDate = t.dateSelected : e.deselect ? (n.maxDate = n.originalMaxDate, t.maxDate = t.originalMaxDate) : t.maxDate = n.dateSelected;
     }
 
-    function y(e, t, n) {
+    function p(e, t, n) {
       if (!t.nonInput) return n ? e.value = "" : t.formatter !== s ? t.formatter(e, t.dateSelected, t) : void (e.value = t.dateSelected.toDateString());
     }
 
@@ -34140,16 +34241,16 @@ var define;
             n = e.position.right;
         if (e.position.centered) return e.calendarContainer.classList.add("qs-centered");
         var a = e.positionedEl.getBoundingClientRect(),
-            i = e.el.getBoundingClientRect(),
-            o = e.calendarContainer.getBoundingClientRect(),
-            r = i.top - a.top + (t ? -1 * o.height : i.height) + "px",
-            s = i.left - a.left + (n ? i.width - o.width : 0) + "px";
-        e.calendarContainer.style.setProperty("top", r), e.calendarContainer.style.setProperty("left", s);
+            r = e.el.getBoundingClientRect(),
+            i = e.calendarContainer.getBoundingClientRect(),
+            o = r.top - a.top + (t ? -1 * i.height : r.height) + "px",
+            s = r.left - a.left + (n ? r.width - i.width : 0) + "px";
+        e.calendarContainer.style.setProperty("top", o), e.calendarContainer.style.setProperty("left", s);
       }
     }
 
     function g(e) {
-      return "[object Date]" === C(e) && "Invalid Date" !== e.toString();
+      return "[object Date]" === j(e) && "Invalid Date" !== e.toString();
     }
 
     function q(e) {
@@ -34170,79 +34271,94 @@ var define;
     function M(e, t) {
       var n = t.calendar,
           a = n.querySelector(".qs-overlay"),
-          i = a.querySelector(".qs-overlay-year"),
-          o = n.querySelector(".qs-controls"),
-          r = n.querySelector(".qs-squares");
-      e ? (a.classList.add("qs-hidden"), o.classList.remove("qs-blur"), r.classList.remove("qs-blur"), i.value = "") : (a.classList.remove("qs-hidden"), o.classList.add("qs-blur"), r.classList.add("qs-blur"), i.focus());
+          r = a.querySelector(".qs-overlay-year"),
+          i = n.querySelector(".qs-controls"),
+          o = n.querySelector(".qs-squares");
+      e ? (a.classList.add("qs-hidden"), i.classList.remove("qs-blur"), o.classList.remove("qs-blur"), r.value = "") : (a.classList.remove("qs-hidden"), i.classList.add("qs-blur"), o.classList.add("qs-blur"), r.focus());
     }
 
     function x(e, t, n, a) {
-      var i = isNaN(+new Date().setFullYear(t.value || void 0)),
-          o = i ? null : t.value;
-      if (13 === (e.which || e.keyCode) || "click" === e.type) a ? D(null, n, o, a) : i || t.classList.contains("qs-disabled") || D(null, n, o, a);else if (n.calendar.contains(t)) {
-        n.calendar.querySelector(".qs-submit").classList[i ? "add" : "remove"]("qs-disabled");
+      var r = isNaN(+new Date().setFullYear(t.value || void 0)),
+          i = r ? null : t.value;
+      if (13 === (e.which || e.keyCode) || "click" === e.type) a ? D(null, n, i, a) : r || t.classList.contains("qs-disabled") || D(null, n, i, a);else if (n.calendar.contains(t)) {
+        n.calendar.querySelector(".qs-submit").classList[r ? "add" : "remove"]("qs-disabled");
       }
     }
 
-    function C(e) {
+    function j(e) {
       return {}.toString.call(e);
     }
 
-    function Y(e) {
+    function C(e) {
       a.forEach(function (t) {
         t !== e && w(t);
       });
     }
 
-    function j(e) {
+    function Y(e) {
       if (!e.__qs_shadow_dom) {
         var t = e.which || e.keyCode,
             n = e.type,
-            i = e.target,
-            o = i.classList,
-            r = a.filter(function (e) {
-          return e.calendar.contains(i) || e.el === i;
+            r = e.target,
+            o = r.classList,
+            s = a.filter(function (e) {
+          return e.calendar.contains(r) || e.el === r;
         })[0],
-            s = r && r.calendar.contains(i);
-        if (!(r && r.isMobile && r.disableMobile)) if ("click" === n) {
-          if (!r) return a.forEach(w);
-          if (r.disabled) return;
-          var l = r.calendar,
-              d = r.calendarContainer,
-              c = r.disableYearOverlay,
-              u = r.nonInput,
-              h = l.querySelector(".qs-overlay-year"),
-              f = !!l.querySelector(".qs-hidden"),
-              v = l.querySelector(".qs-month-year").contains(i),
-              p = i.dataset.monthNum;
-          if (r.noPosition && !s) (d.classList.contains("qs-hidden") ? S : w)(r);else if (o.contains("qs-arrow")) D(o, r);else if (v || o.contains("qs-close")) c || M(!f, r);else if (p) x(e, h, r, p);else {
+            l = s && s.calendar.contains(r);
+        if (!(s && s.isMobile && s.disableMobile)) if ("click" === n) {
+          if (!s) return a.forEach(w);
+          if (s.disabled) return;
+          var d = s.calendar,
+              c = s.calendarContainer,
+              h = s.disableYearOverlay,
+              f = s.nonInput,
+              v = d.querySelector(".qs-overlay-year"),
+              y = !!d.querySelector(".qs-hidden"),
+              p = d.querySelector(".qs-month-year").contains(r),
+              b = r.dataset.monthNum;
+          if (s.noPosition && !l) (c.classList.contains("qs-hidden") ? S : w)(s);else if (o.contains("qs-arrow")) D(o, s);else if (p || o.contains("qs-close")) h || M(!y, s);else if (b) x(e, v, s, b);else {
+            if (o.contains("qs-disabled")) return;
+
             if (o.contains("qs-num")) {
-              var y = "SPAN" === i.nodeName ? i.parentNode : i,
-                  b = i.textContent;
-              return void (+new Date(r.currentYear, r.currentMonth, b) == +r.dateSelected ? m(y, r, !0) : y.classList.contains("qs-disabled") || m(y, r));
+              var g = r.textContent,
+                  q = +r.dataset.direction,
+                  j = new Date(s.currentYear, s.currentMonth + q, g);
+
+              if (q) {
+                s.currentYear = j.getFullYear(), s.currentMonth = j.getMonth(), s.currentMonthName = i[s.currentMonth], u(s);
+
+                for (var Y, L = s.calendar.querySelectorAll('[data-direction="0"]'), E = 0; !Y;) {
+                  var P = L[E];
+                  P.textContent === g && (Y = P), E++;
+                }
+
+                r = Y;
+              }
+
+              return void (+j == +s.dateSelected ? m(r, s, !0) : r.classList.contains("qs-disabled") || m(r, s));
             }
 
-            o.contains("qs-submit") && !o.contains("qs-disabled") ? x(e, h, r) : u && i === r.el && (S(r), Y(r));
+            o.contains("qs-submit") ? x(e, v, s) : f && r === s.el && (S(s), C(s));
           }
-        } else if ("focusin" === n && r) S(r), Y(r);else if ("keydown" === n && 9 === t && r) w(r);else if ("keydown" === n && r && !r.disabled) {
-          var g = !r.calendar.querySelector(".qs-overlay").classList.contains("qs-hidden");
-          13 === t && g && s ? x(e, i, r) : 27 === t && g && s && M(!0, r);
+        } else if ("focusin" === n && s) S(s), C(s);else if ("keydown" === n && 9 === t && s) w(s);else if ("keydown" === n && s && !s.disabled) {
+          var k = !s.calendar.querySelector(".qs-overlay").classList.contains("qs-hidden");
+          13 === t && k && l ? x(e, r, s) : 27 === t && k && l && M(!0, s);
         } else if ("input" === n) {
-          if (!r || !r.calendar.contains(i)) return;
-          var q = r.calendar.querySelector(".qs-submit"),
-              C = i.value.split("").reduce(function (e, t) {
+          if (!s || !s.calendar.contains(r)) return;
+          var O = s.calendar.querySelector(".qs-submit"),
+              N = r.value.split("").reduce(function (e, t) {
             return e || "0" !== t ? e + (t.match(/[0-9]/) ? t : "") : "";
           }, "").slice(0, 4);
-          i.value = C, q.classList[4 === C.length ? "remove" : "add"]("qs-disabled");
+          r.value = N, O.classList[4 === N.length ? "remove" : "add"]("qs-disabled");
         }
       }
     }
 
-    function E(e) {
-      j(e), e.__qs_shadow_dom = !0;
+    function L(e) {
+      Y(e), e.__qs_shadow_dom = !0;
     }
 
-    function L(e, t) {
+    function E(e, t) {
       l.forEach(function (n) {
         e.removeEventListener(n, t);
       });
@@ -34259,19 +34375,17 @@ var define;
     function O(e, t) {
       var n = q(e),
           a = this.currentYear,
-          i = this.currentMonth,
-          o = this.sibling;
-      if (null == e) return this.dateSelected = void 0, y(this.el, this, !0), o && (p({
+          r = this.currentMonth,
+          i = this.sibling;
+      if (null == e) return this.dateSelected = void 0, p(this.el, this, !0), i && (y({
         instance: this,
         deselect: !0
-      }), u(o)), u(this), this;
+      }), u(i)), u(this), this;
       if (!g(e)) throw "`setDate` needs a JavaScript Date object.";
-      if (this.disabledDates.some(function (e) {
-        return +e == +n;
-      }) || n < this.minDate || n > this.maxDate) throw "You can't manually set a date that's disabled.";
-      return this.dateSelected = n, t && (this.currentYear = n.getFullYear(), this.currentMonth = n.getMonth(), this.currentMonthName = this.months[n.getMonth()]), y(this.el, this), o && (p({
+      if (this.disabledDates[+n] || n < this.minDate || n > this.maxDate) throw "You can't manually set a date that's disabled.";
+      return this.dateSelected = n, t && (this.currentYear = n.getFullYear(), this.currentMonth = n.getMonth(), this.currentMonthName = this.months[n.getMonth()]), p(this.el, this), i && (y({
         instance: this
-      }), u(o)), (a === n.getFullYear() && i === n.getMonth() || t) && u(this, n), this;
+      }), u(i)), (a === n.getFullYear() && r === n.getMonth() || t) && u(this, n), this;
     }
 
     function N(e) {
@@ -34284,9 +34398,9 @@ var define;
 
     function I(e, t, n) {
       var a = e.dateSelected,
-          i = e.first,
-          o = e.sibling,
-          r = e.minDate,
+          r = e.first,
+          i = e.sibling,
+          o = e.minDate,
           s = e.maxDate,
           l = q(t),
           d = n ? "Min" : "Max";
@@ -34307,11 +34421,11 @@ var define;
         throw "Out-of-range date passed to " + f();
       }
 
-      if (null == t) e[c()] = void 0, o ? (o[c()] = void 0, n ? (i && !a || !i && !o.dateSelected) && (e.minDate = void 0, o.minDate = void 0) : (i && !o.dateSelected || !i && !a) && (e.maxDate = void 0, o.maxDate = void 0)) : e[h()] = void 0;else {
+      if (null == t) e[c()] = void 0, i ? (i[c()] = void 0, n ? (r && !a || !r && !i.dateSelected) && (e.minDate = void 0, i.minDate = void 0) : (r && !i.dateSelected || !r && !a) && (e.maxDate = void 0, i.maxDate = void 0)) : e[h()] = void 0;else {
         if (!g(t)) throw "Invalid date passed to " + f();
-        o ? ((i && n && l > (a || s) || i && !n && l < (o.dateSelected || r) || !i && n && l > (o.dateSelected || s) || !i && !n && l < (a || r)) && v(), e[c()] = l, o[c()] = l, (n && (i && !a || !i && !o.dateSelected) || !n && (i && !o.dateSelected || !i && !a)) && (e[h()] = l, o[h()] = l)) : ((n && l > (a || s) || !n && l < (a || r)) && v(), e[h()] = l);
+        i ? ((r && n && l > (a || s) || r && !n && l < (i.dateSelected || o) || !r && n && l > (i.dateSelected || s) || !r && !n && l < (a || o)) && v(), e[c()] = l, i[c()] = l, (n && (r && !a || !r && !i.dateSelected) || !n && (r && !i.dateSelected || !r && !a)) && (e[h()] = l, i[h()] = l)) : ((n && l > (a || s) || !n && l < (a || o)) && v(), e[h()] = l);
       }
-      return o && u(o), u(e), e;
+      return i && u(i), u(e), e;
     }
 
     function R() {
@@ -34327,31 +34441,32 @@ var define;
       var e = this.shadowDom,
           t = this.positionedEl,
           n = this.calendarContainer,
-          i = this.sibling,
-          o = this;
+          r = this.sibling,
+          i = this;
       this.inlinePosition && (a.some(function (e) {
-        return e !== o && e.positionedEl === t;
+        return e !== i && e.positionedEl === t;
       }) || t.style.setProperty("position", null));
       n.remove(), a = a.filter(function (e) {
-        return e !== o;
-      }), i && delete i.sibling, a.length || L(document, j);
-      var r = a.some(function (t) {
+        return e !== i;
+      }), r && delete r.sibling, a.length || E(document, Y);
+      var o = a.some(function (t) {
         return t.shadowDom === e;
       });
 
-      for (var s in e && !r && L(e, E), this) delete this[s];
+      for (var s in e && !o && E(e, L), this) delete this[s];
 
       a.length || l.forEach(function (e) {
-        document.removeEventListener(e, j);
+        document.removeEventListener(e, Y);
       });
     }
 
     function F(e, t) {
-      if (date = new Date(e), !g(date)) throw "`navigate` needs a JavaScript Date object.";
-      this.currentYear = date.getFullYear(), this.currentMonth = date.getMonth(), u(this), t && this.onMonthChange(this);
+      var n = new Date(e);
+      if (!g(n)) throw "`navigate` needs a JavaScript Date object.";
+      this.currentYear = n.getFullYear(), this.currentMonth = n.getMonth(), u(this), t && this.onMonthChange(this);
     }
 
-    e.exports = function (e, t) {
+    t.default = function (e, t) {
       var n = function (e, t) {
         var n,
             l,
@@ -34367,19 +34482,19 @@ var define;
             t[e] = q(n);
           });
           var n = t.position,
-              o = t.maxDate,
+              i = t.maxDate,
               l = t.minDate,
               d = t.dateSelected,
               u = t.overlayPlaceholder,
               h = t.overlayButton,
               f = t.startDay,
               v = t.id;
-          if (t.startDate = q(t.startDate || d || new Date()), t.disabledDates = (t.disabledDates || []).map(function (e) {
-            var t = +q(e);
-            if (!g(e)) throw 'You supplied an invalid date to "options.disabledDates".';
-            if (t === +q(d)) throw '"disabledDates" cannot contain the same date as "dateSelected".';
-            return t;
-          }), t.hasOwnProperty("id") && null == v) throw "Id cannot be `null` or `undefined`";
+          if (t.startDate = q(t.startDate || d || new Date()), t.disabledDates = (t.disabledDates || []).reduce(function (e, t) {
+            var n = +q(t);
+            if (!g(t)) throw 'You supplied an invalid date to "options.disabledDates".';
+            if (n === +q(d)) throw '"disabledDates" cannot contain the same date as "dateSelected".';
+            return e[n] = 1, e;
+          }, {}), t.hasOwnProperty("id") && null == v) throw "Id cannot be `null` or `undefined`";
 
           if (null != v) {
             var m = a.filter(function (e) {
@@ -34389,40 +34504,40 @@ var define;
             m.length ? (t.second = !0, t.sibling = m[0]) : t.first = !0;
           }
 
-          var p = ["tr", "tl", "br", "bl", "c"].some(function (e) {
+          var y = ["tr", "tl", "br", "bl", "c"].some(function (e) {
             return n === e;
           });
-          if (n && !p) throw '"options.position" must be one of the following: tl, tr, bl, br, or c.';
+          if (n && !y) throw '"options.position" must be one of the following: tl, tr, bl, br, or c.';
           if (t.position = function (e) {
             var t = e[0],
                 n = e[1],
                 a = {};
-            a[r[t]] = 1, n && (a[r[n]] = 1);
+            a[o[t]] = 1, n && (a[o[n]] = 1);
             return a;
-          }(n || "bl"), o < l) throw '"maxDate" in options is less than "minDate".';
+          }(n || "bl"), i < l) throw '"maxDate" in options is less than "minDate".';
 
           if (d) {
-            function y(e) {
+            function p(e) {
               throw '"dateSelected" in options is ' + (e ? "less" : "greater") + ' than "' + (e || "max") + 'Date".';
             }
 
-            l > d && y("min"), o < d && y();
+            l > d && p("min"), i < d && p();
           }
 
           if (["onSelect", "onShow", "onHide", "onMonthChange", "formatter", "disabler"].forEach(function (e) {
             "function" != typeof t[e] && (t[e] = s);
           }), ["customDays", "customMonths", "customOverlayMonths"].forEach(function (e, n) {
             var a = t[e],
-                i = n ? 12 : 7;
+                r = n ? 12 : 7;
 
             if (a) {
-              if (!Array.isArray(a) || a.length !== i || a.some(function (e) {
+              if (!Array.isArray(a) || a.length !== r || a.some(function (e) {
                 return "string" != typeof e;
               })) throw '"' + e + '" must be an array with ${num} strings.';
               t[n ? n < 2 ? "months" : "overlayMonths" : "days"] = a;
             }
           }), f && f > 0 && f < 7) {
-            var D = (t.customDays || i).slice(),
+            var D = (t.customDays || r).slice(),
                 b = D.splice(0, f);
             t.customDays = D.concat(b), t.startDay = +f, t.weekendIndices = [D.length - 1, D.length];
           } else t.startDay = 0, t.weekendIndices = [6, 0];
@@ -34437,34 +34552,35 @@ var define;
             u = e;
 
         if ("string" == typeof u) u = "#" === u[0] ? document.getElementById(u.slice(1)) : document.querySelector(u);else {
-          if ("[object ShadowRoot]" === C(u)) throw "Using a shadow DOM as your selector is not supported.";
+          if ("[object ShadowRoot]" === j(u)) throw "Using a shadow DOM as your selector is not supported.";
 
-          try {
-            var h = u.getRootNode();
-            "[object ShadowRoot]" === C(h) && (n = h, l = h.host);
-          } catch (e) {
-            throw console.warn("You have to polyfill the web components spec - http://bit.ly/3axUZHC"), e;
+          for (var h, f = ("getRootNode" in window.Node.prototype), v = u.parentNode; !h;) {
+            var m = j(v);
+            if ("[object HTMLDocument]" === m) h = !0;else if ("[object ShadowRoot]" === m) {
+              if (h = !0, !f) throw "The shadow DOM is not supported in your browser.";
+              n = v, l = currentParen.host;
+            } else v = v.parentNode;
           }
         }
         if (!u) throw "No selector / element found.";
         if (a.some(function (e) {
           return e.el === u;
         })) throw "A datepicker already exists on that element.";
-        var f = u === document.body,
-            v = n ? u.parentElement || n : f ? document.body : u.parentElement,
-            m = n ? u.parentElement || l : v,
-            p = document.createElement("div"),
-            D = document.createElement("div");
-        p.className = "qs-datepicker-container qs-hidden", D.className = "qs-datepicker";
-        var b = {
+        var y = u === document.body,
+            D = n ? u.parentElement || n : y ? document.body : u.parentElement,
+            b = n ? u.parentElement || l : D,
+            w = document.createElement("div"),
+            M = document.createElement("div");
+        w.className = "qs-datepicker-container qs-hidden", M.className = "qs-datepicker";
+        var x = {
           shadowDom: n,
           customElement: l,
-          positionedEl: m,
+          positionedEl: b,
           el: u,
-          parent: v,
+          parent: D,
           nonInput: "INPUT" !== u.nodeName,
-          noPosition: f,
-          position: !f && d.position,
+          noPosition: y,
+          position: !y && d.position,
           startDate: d.startDate,
           dateSelected: d.dateSelected,
           disabledDates: d.disabledDates,
@@ -34472,10 +34588,10 @@ var define;
           maxDate: d.maxDate,
           noWeekends: !!d.noWeekends,
           weekendIndices: d.weekendIndices,
-          calendarContainer: p,
-          calendar: D,
+          calendarContainer: w,
+          calendar: M,
           currentMonth: (d.startDate || d.dateSelected).getMonth(),
-          currentMonthName: (d.months || o)[(d.startDate || d.dateSelected).getMonth()],
+          currentMonthName: (d.months || i)[(d.startDate || d.dateSelected).getMonth()],
           currentYear: (d.startDate || d.dateSelected).getFullYear(),
           events: d.events || {},
           setDate: O,
@@ -34491,10 +34607,10 @@ var define;
           onMonthChange: d.onMonthChange,
           formatter: d.formatter,
           disabler: d.disabler,
-          months: d.months || o,
-          days: d.customDays || i,
+          months: d.months || i,
+          days: d.customDays || r,
           startDay: d.startDay,
-          overlayMonths: d.overlayMonths || (d.months || o).map(function (e) {
+          overlayMonths: d.overlayMonths || (d.months || i).map(function (e) {
             return e.slice(0, 3);
           }),
           overlayPlaceholder: d.overlayPlaceholder || "4-digit year",
@@ -34511,31 +34627,31 @@ var define;
         };
 
         if (d.sibling) {
-          var w = d.sibling,
-              M = b,
-              x = w.minDate || M.minDate,
-              Y = w.maxDate || M.maxDate;
-          M.sibling = w, w.sibling = M, w.minDate = x, w.maxDate = Y, M.minDate = x, M.maxDate = Y, w.originalMinDate = x, w.originalMaxDate = Y, M.originalMinDate = x, M.originalMaxDate = Y, w.getRange = R, M.getRange = R;
+          var C = d.sibling,
+              Y = x,
+              L = C.minDate || Y.minDate,
+              E = C.maxDate || Y.maxDate;
+          Y.sibling = C, C.sibling = Y, C.minDate = L, C.maxDate = E, Y.minDate = L, Y.maxDate = E, C.originalMinDate = L, C.originalMaxDate = E, Y.originalMinDate = L, Y.originalMaxDate = E, C.getRange = R, Y.getRange = R;
         }
 
-        d.dateSelected && y(u, b);
-        var j = getComputedStyle(m).position;
-        f || j && "static" !== j || (b.inlinePosition = !0, m.style.setProperty("position", "relative"));
-        b.inlinePosition && a.forEach(function (e) {
-          e.positionedEl === b.positionedEl && (e.inlinePosition = !0);
+        d.dateSelected && p(u, x);
+        var I = getComputedStyle(b).position;
+        y || I && "static" !== I || (x.inlinePosition = !0, b.style.setProperty("position", "relative"));
+        x.inlinePosition && a.forEach(function (e) {
+          e.positionedEl === x.positionedEl && (e.inlinePosition = !0);
         });
-        p.appendChild(D), v.appendChild(p), b.alwaysShow && S(b);
-        return b;
+        w.appendChild(M), D.appendChild(w), x.alwaysShow && S(x);
+        return x;
       }(e, t);
 
       if (a.length || d(document), n.shadowDom && (a.some(function (e) {
         return e.shadowDom === n.shadowDom;
       }) || d(n.shadowDom)), a.push(n), n.second) {
         var l = n.sibling;
-        p({
+        y({
           instance: n,
           deselect: !n.dateSelected
-        }), p({
+        }), y({
           instance: l,
           deselect: !l.dateSelected
         }), u(l);
@@ -34543,7 +34659,7 @@ var define;
 
       return u(n, n.startDate || n.dateSelected), n.alwaysShow && b(n), n;
     };
-  }, function (e, t, n) {}]);
+  }, function (e, t, n) {}]).default;
 });
 },{}],"D0yl":[function(require,module,exports) {
 "use strict";
@@ -35489,6 +35605,11 @@ var Util = {
     // No prefix
     if (prefixLength === 0) {
       return value;
+    } // Value is prefix
+
+
+    if (value === prefix && value !== '') {
+      return '';
     }
 
     if (signBeforePrefix && value.slice(0, 1) == '-') {
@@ -35533,7 +35654,7 @@ var Util = {
   getFormattedValue: function (value, blocks, blocksLength, delimiter, delimiters, delimiterLazyShow) {
     var result = '',
         multipleDelimiters = delimiters.length > 0,
-        currentDelimiter; // no options, normal input
+        currentDelimiter = ''; // no options, normal input
 
     if (blocksLength === 0) {
       return value;
@@ -35774,6 +35895,7 @@ Cleave.prototype = {
     pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
     owner.isAndroid = Cleave.Util.isAndroid();
     owner.lastInputValue = '';
+    owner.isBackward = '';
     owner.onChangeListener = owner.onChange.bind(owner);
     owner.onKeyDownListener = owner.onKeyDown.bind(owner);
     owner.onFocusListener = owner.onFocus.bind(owner);
@@ -35860,34 +35982,29 @@ Cleave.prototype = {
   },
   onKeyDown: function (event) {
     var owner = this,
+        charCode = event.which || event.keyCode;
+    owner.lastInputValue = owner.element.value;
+    owner.isBackward = charCode === 8;
+  },
+  onChange: function (event) {
+    var owner = this,
         pps = owner.properties,
-        charCode = event.which || event.keyCode,
-        Util = Cleave.Util,
-        currentValue = owner.element.value; // if we got any charCode === 8, this means, that this device correctly
-    // sends backspace keys in event, so we do not need to apply any hacks
+        Util = Cleave.Util;
+    owner.isBackward = owner.isBackward || event.inputType === 'deleteContentBackward';
+    var postDelimiter = Util.getPostDelimiter(owner.lastInputValue, pps.delimiter, pps.delimiters);
 
-    owner.hasBackspaceSupport = owner.hasBackspaceSupport || charCode === 8;
-
-    if (!owner.hasBackspaceSupport && Util.isAndroidBackspaceKeydown(owner.lastInputValue, currentValue)) {
-      charCode = 8;
-    }
-
-    owner.lastInputValue = currentValue; // hit backspace when last character is delimiter
-
-    var postDelimiter = Util.getPostDelimiter(currentValue, pps.delimiter, pps.delimiters);
-
-    if (charCode === 8 && postDelimiter) {
+    if (owner.isBackward && postDelimiter) {
       pps.postDelimiterBackspace = postDelimiter;
     } else {
       pps.postDelimiterBackspace = false;
     }
-  },
-  onChange: function () {
+
     this.onInput(this.element.value);
   },
   onFocus: function () {
     var owner = this,
         pps = owner.properties;
+    owner.lastInputValue = owner.element.value;
 
     if (pps.prefix && pps.noImmediatePrefix && !owner.element.value) {
       this.onInput(pps.prefix);
@@ -35989,7 +36106,7 @@ Cleave.prototype = {
     value = pps.uppercase ? value.toUpperCase() : value;
     value = pps.lowercase ? value.toLowerCase() : value; // prevent from showing prefix when no immediate option enabled with empty input value
 
-    if (pps.prefix && (!pps.noImmediatePrefix || value.length)) {
+    if (pps.prefix) {
       if (pps.tailPrefix) {
         value = value + pps.prefix;
       } else {
@@ -36314,4 +36431,4 @@ $(function () {
   });
 });
 },{"remove-focus-outline":"Sf4z","smooth-scroll":"vL7d","swiper":"IRiB","polyfill":"lpxe","yup":"Iq5O","axios":"dZBD","jquery":"juYr","js-datepicker":"SDNX","js-datepicker/dist/datepicker.min.css":"rDCW","./phoneNumberCode":"D0yl","cleave.js":"cHql"}]},{},["KIzB"], null)
-//# sourceMappingURL=main.32f390d2.js.map
+//# sourceMappingURL=main.a7d17269.js.map

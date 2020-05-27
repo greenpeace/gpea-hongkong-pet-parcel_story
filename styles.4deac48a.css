@@ -1199,11 +1199,15 @@ body {
 }
 
 .header--white {
+  --bg-opacity: 1;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
 .header--green {
+  --bg-opacity: 1;
   background-color: #66cc00;
+  background-color: rgba(102, 204, 0, var(--bg-opacity));
 }
 
 .logo {
@@ -1221,8 +1225,12 @@ body {
 }
 
 .nav-button {
+  --bg-opacity: 1;
   background-color: #ff9500;
+  background-color: rgba(255, 149, 0, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   font-weight: 700;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1237,8 +1245,12 @@ body {
   padding-right: 1rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  --bg-opacity: 1;
   background-color: #292f47;
+  background-color: rgba(41, 47, 71, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   font-size: 0.875rem;
 }
 
@@ -1271,7 +1283,9 @@ body {
 
 .form-body {
   border-width: 1px;
+  --bg-opacity: 1;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2rem;
@@ -1291,14 +1305,18 @@ body {
   padding-right: 0.5rem;
   margin-bottom: 0.25rem;
   width: 100%;
+  --text-opacity: 1;
   color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
   font-size: 0.75rem;
 }
 
 .form-input {
   border-width: 1px;
   width: 100%;
+  --bg-opacity: 1;
   background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
   font-size: 1rem;
   -webkit-appearance: none;
           appearance: none;
@@ -1310,21 +1328,31 @@ body {
 }
 
 .form-input:hover {
+  --bg-opacity: 1;
   background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
 }
 
 .form-input:focus {
+  --bg-opacity: 1;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
   outline: 0;
+  --border-opacity: 1;
   border-color: #66cc00;
+  border-color: rgba(102, 204, 0, var(--border-opacity));
 }
 
 .form-button {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   display: block;
   width: 100%;
+  --bg-opacity: 1;
   background-color: #ff9500;
+  background-color: rgba(255, 149, 0, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   text-align: center;
   font-weight: 700;
   padding-top: 0.5rem;
@@ -1360,7 +1388,9 @@ body {
   border-width: 1px;
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --text-opacity: 1;
   color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
 }
 
 .preference-card:hover {
@@ -1384,7 +1414,9 @@ body {
   padding-bottom: 1rem;
   font-weight: 700;
   letter-spacing: 0.05em;
+  --bg-opacity: 1;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1395,116 +1427,57 @@ body {
 /* issue specific styles */
 
 .arctic .preference-card-name {
+  --bg-opacity: 1;
   background-color: #62cbd7;
+  background-color: rgba(98, 203, 215, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .health .preference-card-name {
+  --bg-opacity: 1;
   background-color: #f96d8c;
+  background-color: rgba(249, 109, 140, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .plastics .preference-card-name {
+  --bg-opacity: 1;
   background-color: #afaa91;
+  background-color: rgba(175, 170, 145, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .climate .preference-card-name {
+  --bg-opacity: 1;
   background-color: #ffbe00;
+  background-color: rgba(255, 190, 0, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .forests .preference-card-name {
+  --bg-opacity: 1;
   background-color: #00b474;
+  background-color: rgba(0, 180, 116, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .oceans .preference-card-name {
+  --bg-opacity: 1;
   background-color: #008fe2;
+  background-color: rgba(0, 143, 226, var(--bg-opacity));
+  --text-opacity: 1;
   color: #fff;
-}
-
-.line {
-  height: 1px;
-  background-color: #cbd5e0;
-  width: 91.666667%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.absolute-full {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-overlay {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  background-image: radial-gradient(#064188 5%, #011952 100%);
-}
-
-.hero-banner {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  background-image: url("https://www.peoplevsoil.org/zh-HK/assets/files/shared/slideshow/GP0STPA6O.jpg");
-}
-
-.article {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.speakers {
-  width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  display: flex;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-flow: row;
-  flex-wrap: wrap;
-}
-
-.speaker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  text-align: center;
-}
-
-.speaker__avatar {
-  border-radius: 9999px;
-  height: 8rem;
-  width: 8rem;
-  flex-shrink: 0;
-  object-fit: cover;
-}
-
-.speaker p {
-  display: none;
-}
-
-.speaker + .speaker {
-  margin-left: 20px;
-}
-
-.participants {
-  flex: 1 1 0%;
-}
-
-.badge {
-  position: relative;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 /* custom styles */
@@ -1517,7 +1490,6 @@ body {
 
 .credit-line {
   font-size: 0.875rem;
-  color: #333;
 }
 
 /**
@@ -1531,35 +1503,51 @@ body {
 }
 
 .bg-black{
+  --bg-opacity: 1;
   background-color: #000;
+  background-color: rgba(0, 0, 0, var(--bg-opacity));
 }
 
 .bg-white{
+  --bg-opacity: 1;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
 .bg-gray-100{
+  --bg-opacity: 1;
   background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
 }
 
 .bg-gray-400{
+  --bg-opacity: 1;
   background-color: #cbd5e0;
+  background-color: rgba(203, 213, 224, var(--bg-opacity));
 }
 
 .bg-gporange{
+  --bg-opacity: 1;
   background-color: #ff9500;
+  background-color: rgba(255, 149, 0, var(--bg-opacity));
 }
 
 .bg-gpdarkblue{
+  --bg-opacity: 1;
   background-color: #292f47;
+  background-color: rgba(41, 47, 71, var(--bg-opacity));
 }
 
 .hover\:bg-gray-700:hover{
+  --bg-opacity: 1;
   background-color: #4a5568;
+  background-color: rgba(74, 85, 104, var(--bg-opacity));
 }
 
 .border-gray-400{
+  --border-opacity: 1;
   border-color: #cbd5e0;
+  border-color: rgba(203, 213, 224, var(--border-opacity));
 }
 
 .rounded{
@@ -1586,12 +1574,12 @@ body {
   display: flex;
 }
 
-.grid{
-  display: grid;
-}
-
 .table{
   display: table;
+}
+
+.grid{
+  display: grid;
 }
 
 .hidden{
@@ -2023,31 +2011,45 @@ body {
 }
 
 .text-white{
+  --text-opacity: 1;
   color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .text-gray-400{
+  --text-opacity: 1;
   color: #cbd5e0;
+  color: rgba(203, 213, 224, var(--text-opacity));
 }
 
 .text-gray-500{
+  --text-opacity: 1;
   color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
 }
 
 .text-gray-600{
+  --text-opacity: 1;
   color: #718096;
+  color: rgba(113, 128, 150, var(--text-opacity));
 }
 
 .text-gray-700{
+  --text-opacity: 1;
   color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
 }
 
 .text-gray-900{
+  --text-opacity: 1;
   color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity));
 }
 
 .text-gpgreen{
+  --text-opacity: 1;
   color: #66cc00;
+  color: rgba(102, 204, 0, var(--text-opacity));
 }
 
 .underline{
@@ -2301,4 +2303,4 @@ body {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
-/*# sourceMappingURL=styles.d9123ae5.css.map */
+/*# sourceMappingURL=styles.4deac48a.css.map */
