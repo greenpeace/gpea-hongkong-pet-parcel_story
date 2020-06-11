@@ -110,13 +110,6 @@ $(function () {
     };
     console.log(formData);
     //
-    validationScheme.isValid(formData).then(function (valid) {
-      valid; // => true
-    });
-    validationScheme.validate(formData).catch(function (error) {
-      console.log(error);
-    });
-    //
     var url = 'http://cloud.greenhk.greenpeace.org/petition-pp2';
     $.ajax({
       url: url,
