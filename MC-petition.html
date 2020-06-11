@@ -29,6 +29,44 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
     <title>GP PET Template</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="styles.caefe20e.css">
+    <style>/*Loader*/
+
+.centered {
+  position: fixed; /* or absolute */
+  top: 35%;
+  left: 50%;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #66cc00;
+  border-radius: 100%;
+  animation: sk-scaleout 1s infinite ease-in-out;
+  display: none;
+}
+
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+#fade-wrapper {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 999;
+}</style>
   </head>
   <body class="antialiased text-gray-900 bg-gray-100 relative flex flex-col items-center font-notohk">
     <!--[if IE]>
@@ -39,13 +77,20 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
       </p>
     <![endif]-->
     <!-- Add your site or application content here -->
+    <div class="centered"><div class="spinner"></div></div>
+    <div id="fade-wrapper"></div>
     <main id="app" class="main">
       <div class="sticky form-container self-center md:px-4" style="top: 20px;">
-        <form class="form-body" id="form">
+        <form class="form-body" id="form1">
           <div class="hidden-fields hidden">
             <input type="hidden" name="req" value="post_data">
             <input type="hidden" name="LeadSource" value="%%=v(@LeadSource)=%%">
-            <input type="hidden" name="PetitionIssueType" value="%%=v(@PetitionIssueType)=%%">
+            <input type="hidden" name="Petition_Interested_In_Arctic__c" value="%%=v(@Petition_Interested_In_Arctic__c)=%%">
+            <input type="hidden" name="Petition_Interested_In_Climate__c" value="%%=v(@Petition_Interested_In_Climate__c)=%%">
+            <input type="hidden" name="Petition_Interested_In_Forest__c" value="%%=v(@Petition_Interested_In_Forest__c)=%%">
+            <input type="hidden" name="Petition_Interested_In_Health__c" value="%%=v(@Petition_Interested_In_Health__c)=%%">
+            <input type="hidden" name="Petition_Interested_In_Oceans__c" value="%%=v(@Petition_Interested_In_Oceans__c)=%%">
+            <input type="hidden" name="Petition_Interested_In_Plastics__c" value="%%=v(@Petition_Interested_In_Plastics__c)=%%">
             <input type="hidden" name="CampaignId" value="%%=v(@CampaignId)=%%">
             <input type="hidden" name="UtmMedium" value="%%=v(@UtmMedium)=%%">
             <input type="hidden" name="UtmSource" value="%%=v(@UtmSource)=%%">
@@ -57,8 +102,9 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
             <input name="req" type="hidden" value="post_data">
           </div>
           <div class="mb-8 form-row text-center">
+            <h2 class="text-2xl font-bold">Make a change</h2>
             <p class="text-base">
-              一同發聲要求包括惠康在內的超市回應你的訴求：<br>制定完整減塑藍圖、發展可重用包裝銷售模式、淘汰無謂塑膠包裝，並提供走塑購物選項。
+              Stop the use of single use plastics in supermarkets!
             </p>
           </div>
           <div class="form-row">
@@ -85,10 +131,10 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
           </div>
           <div class="form-row flex items-end">
             <div class="flex-none">
-              <input class="w-16 form-input" name="PhoneCode" type="text" value="+852">
+              <input class="w-16 form-input" type="text" name="MobileCountryCode" placeholder="852" value="852">
             </div>
             <div class="flex-none mb-3">
-              <span class="mx-1 text-gray-400 pointer-events-none">-</span>
+              <span class="mx-2 text-gray-400 pointer-events-none">-</span>
             </div>
             <div class="flex-1">
               <label class="form-label">
@@ -99,10 +145,10 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
           </div>
           <div class="form-row">
             <label class="form-label">
-              出生日期 Birthdate
+              出生日期 Birthday
             </label>
             <div class="relative">
-              <input class="form-input" type="text" name="Birthdate" placeholder="DD/MM/YYYY">
+              <input class="form-input" type="date" name="Birthdate" placeholder="DD/MM/YYYY">
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
@@ -120,8 +166,26 @@ RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
           </div>
           <div class="form-row">
             <button class="form-button">
-              立即聯署
+              Sign the petition
             </button>
+          </div>
+          <div class="form-row">
+            <div class="confirm-success-container" style="background: #66cc00;
+
+color: #fff;
+
+padding: 5px;
+
+font-size: 20px;
+
+font-size: 1rem;
+
+text-align: center;
+
+display: none;
+              ">
+              <span style="">Thank you. We have received your petition.</span>
+            </div>
           </div>
         </form>
       </div>
