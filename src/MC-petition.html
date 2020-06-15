@@ -1,0 +1,400 @@
+%%[ VAR @UtmMedium, @UtmSource, @UtmCampaign, @UtmContent, @UtmTerm,
+@LeadSource, @PetitionIssueType, @CampaignId, @DonationPageUrl /*Set these
+params when creating a new petition page, for each core interest of the petition
+set the value to "true" to update the supporters CRM profile otherwise leave the
+value blank or with false value */ SET @CampaignId = "7010k000000iJ7aAAE" SET
+@LeadSource = "Petition - Plastics" SET @Petition_Interested_In_Arctic__c =
+"false" SET @Petition_Interested_In_Climate__c = "false" SET
+@Petition_Interested_In_Forest__c = "false" SET
+@Petition_Interested_In_Health__c = "false" SET
+@Petition_Interested_In_Oceans__c = "false" SET
+@Petition_Interested_In_Plastics__c = "true" SET @DonationPageUrl =
+"https://www.greenpeace.org/eastasia/" /**** Retreive number of responses in
+campaign used for any petition where petition sign up progress bar is needed to
+display signups compared to targeted number of signups ****/ SET @CampaignRows =
+RetrieveSalesforceObjects("Campaign","NumberOfResponses,
+Petition_Signup_Target__c","Id","=",@CampaignId) IF RowCount(@CampaignRows) > 0
+THEN SET @CampaignSubscriberRow = Row(@CampaignRows, 1) SET @NumberOfResponses =
+Field(@CampaignSubscriberRow, "NumberOfResponses") SET
+@Petition_Signup_Target__c = Field(@CampaignSubscriberRow,
+"Petition_Signup_Target__c") ENDIF /*UTM Tracking Params*/ SET @UtmMedium =
+RequestParameter("utm_medium") SET @UtmSource = RequestParameter("utm_source")
+SET @UtmCampaign = RequestParameter("utm_campaign") SET @UtmContent =
+RequestParameter("utm_content") SET @UtmTerm = RequestParameter("utm_term") ]%%
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>GP PET Template</title>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./styles/index.scss" />
+    <style>
+      /*Loader*/
+      .centered {
+        position: fixed; /* or absolute */
+        top: 35%;
+        left: 50%;
+        z-index: 1000;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        margin: 100px auto;
+        background-color: #66cc00;
+
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+        animation: sk-scaleout 1s infinite ease-in-out;
+
+        display: none;
+      }
+
+      @-webkit-keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+        }
+        100% {
+          -webkit-transform: scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        100% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+      #fade-wrapper {
+        display: none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background: rgba(255, 255, 255, 0.5);
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased text-gray-900 bg-gray-100 relative flex flex-col items-center font-notohk"
+  >
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <div class="centered"><div class="spinner"></div></div>
+    <div id="fade-wrapper"></div>
+    <main id="app" class="main">
+      <div class="sticky form-container self-center md:px-4" style="top: 20px;">
+        <form class="form-body" id="form1">
+          <div class="hidden-fields hidden">
+            <input type="hidden" name="req" value="post_data" />
+            <input
+              type="hidden"
+              name="LeadSource"
+              value="%%=v(@LeadSource)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Arctic__c"
+              value="%%=v(@Petition_Interested_In_Arctic__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Climate__c"
+              value="%%=v(@Petition_Interested_In_Climate__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Forest__c"
+              value="%%=v(@Petition_Interested_In_Forest__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Health__c"
+              value="%%=v(@Petition_Interested_In_Health__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Oceans__c"
+              value="%%=v(@Petition_Interested_In_Oceans__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="Petition_Interested_In_Plastics__c"
+              value="%%=v(@Petition_Interested_In_Plastics__c)=%%"
+            />
+            <input
+              type="hidden"
+              name="CampaignId"
+              value="%%=v(@CampaignId)=%%"
+            />
+            <input type="hidden" name="UtmMedium" value="%%=v(@UtmMedium)=%%" />
+            <input type="hidden" name="UtmSource" value="%%=v(@UtmSource)=%%" />
+            <input
+              type="hidden"
+              name="UtmCampaign"
+              value="%%=v(@UtmCampaign)=%%"
+            />
+            <input
+              type="hidden"
+              name="UtmContent"
+              value="%%=v(@UtmContent)=%%"
+            />
+            <input type="hidden" name="UtmTerm" value="%%=v(@UtmTerm)=%%" />
+            <input
+              type="hidden"
+              name="DonationPageUrl"
+              value="%%=v(@DonationPageUrl)=%%"
+            />
+            <input type="hidden" name="Company" value="null" />
+            <input name="req" type="hidden" value="post_data" />
+          </div>
+          <div class="mb-8 form-row text-center">
+            <h2 class="text-2xl font-bold">Make a change</h2>
+            <p class="text-base">
+              Stop the use of single use plastics in supermarkets!
+            </p>
+          </div>
+          <div class="form-row">
+            <div class="flex flex-wrap">
+              <div class="w-full mb-4 md:mb-0 md:w-1/2 md:pr-1">
+                <label class="form-label">
+                  姓氏 Last Name
+                </label>
+                <input
+                  class="form-input"
+                  type="text"
+                  name="LastName"
+                  placeholder="姓氏 Last Name"
+                />
+              </div>
+              <div class="w-full md:w-1/2 md:pl-2">
+                <label class="form-label">
+                  名字 First Name
+                </label>
+                <input
+                  class="form-input"
+                  type="text"
+                  name="FirstName"
+                  placeholder="名字 First Name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="" class="form-label">
+              電郵地址 Email Address
+            </label>
+            <input
+              type="text"
+              class="form-input"
+              name="Email"
+              placeholder="電郵地址 Email Address"
+            />
+          </div>
+          <div class="form-row flex items-end">
+            <div class="flex-none">
+              <input
+                class="w-16 form-input"
+                type="text"
+                name="MobileCountryCode"
+                placeholder="852"
+                value="852"
+              />
+            </div>
+            <div class="flex-none mb-3">
+              <span class="mx-2 text-gray-400 pointer-events-none">-</span>
+            </div>
+            <div class="flex-1">
+              <label class="form-label">
+                聯絡電話 Mobile Number
+              </label>
+              <input
+                class="form-input"
+                type="text"
+                name="MobilePhone"
+                placeholder="聯絡電話 Mobile Number"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="form-label">
+              出生日期 Birthday
+            </label>
+            <div class="relative">
+              <input
+                class="form-input"
+                type="date"
+                name="Birthdate"
+                placeholder="DD/MM/YYYY"
+              />
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              >
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="flex items-start">
+              <input
+                class="mr-2 leading-tight"
+                name="OptIn"
+                checked=""
+                type="checkbox"
+              />
+              <span class="form-label">
+                <span class="block text-xs text-gray-600"
+                  >我願意收到綠色和平發送的通訊，讓我能掌握環保工作的最新脈動！我同意綠色和平按照<u>個人資料政策</u>與我聯絡，包括提供環保工作資訊及捐款呼籲等。</span
+                >
+              </span>
+            </label>
+          </div>
+          <div class="form-row">
+            <button class="form-button">
+              Sign the petition
+            </button>
+          </div>
+          <div class="form-row">
+            <div
+              class="confirm-success-container"
+              style="
+                background: #66cc00;
+                color: #fff;
+                padding: 5px;
+                font-size: 20px;
+                font-size: 1rem;
+                text-align: center;
+                display: none;
+              "
+            >
+              <span style="">Thank you. We have received your petition.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <!-- scripts -->
+    <script src="./scripts/main.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.spinner').hide();
+        //Submission
+        $('#form1').submit(function (e) {
+          e.preventDefault();
+          $('.spinner').show();
+          $('.confirm-success-container').hide();
+          $('#fade-wrapper').fadeIn();
+          var formdata = {
+            FirstName: $('input[name="FirstName"]').val(),
+            LastName: $('input[name="LastName"]').val(),
+            Email: $('input[name="Email"]').val(),
+            Company: $('input[name="Company"]').val(),
+            MobileCountryCode: $('input[name="MobileCountryCode"]').val(),
+            MobilePhone: $('input[name="MobilePhone"]').val(),
+            BirthDate: $('input[name="Birthdate"]').val(),
+            Petition_Interested_In_Arctic__c: $(
+              'input[name="Petition_Interested_In_Arctic__c"]'
+            ).val(),
+            Petition_Interested_In_Climate__c: $(
+              'input[name="Petition_Interested_In_Climate__c"]'
+            ).val(),
+            Petition_Interested_In_Forest__c: $(
+              'input[name="Petition_Interested_In_Forest__c"]'
+            ).val(),
+            Petition_Interested_In_Health__c: $(
+              'input[name="Petition_Interested_In_Health__c"]'
+            ).val(),
+            Petition_Interested_In_Oceans__c: $(
+              'input[name="Petition_Interested_In_Oceans__c"]'
+            ).val(),
+            Petition_Interested_In_Plastics__c: $(
+              'input[name="Petition_Interested_In_Plastics__c"]'
+            ).val(),
+            Petition_Interested_In_Arctic__c: $(
+              'input[name="Petition_Interested_In_Arctic__c"]'
+            ).val(),
+            CampaignId: $('input[name="CampaignId"]').val(),
+            LeadSource: $('input[name="LeadSource"]').val(),
+            UtmMedium: $('input[name="UtmMedium"]').val(),
+            UtmSource: $('input[name="UtmSource"]').val(),
+            UtmCampaign: $('input[name="UtmCampaign"]').val(),
+            UtmContent: $('input[name="UtmContent"]').val(),
+            UtmTerm: $('input[name="UtmTerm"]').val(),
+            DonationPageUrl: $('input[name="DonationPageUrl"]').val(),
+            OptIn: $('input:checkbox[name="OptIn"]').prop('checked'),
+            req: $('input[name="req"]').val(),
+          };
+          var url = 'http://cloud.greenhk.greenpeace.org/petition-pp2';
+
+          console.log(formdata);
+          $.ajax({
+            url: url,
+            type: 'post',
+            data: formdata,
+            success: function (data) {
+              if (data) {
+                var response = JSON.parse(data);
+                var contact_id = response.Contact.ID;
+                var records_updated = response.Contact.Records_Updated;
+                var lead_id = response.Lead.ID;
+                var lead_updated = response.Lead.Records_Updated;
+                if (contact_id || lead_id) {
+                  console.log(response);
+                  $('.confirm-success-container').fadeIn();
+                  var formdata = {
+                    FirstName: $('input[name="FirstName"]').val(''),
+                    LastName: $('input[name="LastName"]').val(''),
+                    Email: $('input[name="Email"]').val(''),
+                    MobileCountryCode: $('input[name="MobileCountryCode"]').val(
+                      ''
+                    ),
+                    MobilePhone: $('input[name="MobilePhone"]').val(''),
+                    BirthDate: $('input[name="Birthdate"]').val(''),
+                  };
+                  $('.spinner').hide();
+                  $('#fade-wrapper').fadeOut();
+                } else {
+                  console.log('error');
+                  $('.spinner').hide();
+                  $('#fade-wrapper').fadeOut();
+                }
+              } else {
+                console.log('error');
+                $('.spinner').hide();
+                $('#fade-wrapper').fadeOut();
+              }
+            },
+            error: function () {
+              console.log('error');
+              $('.spinner').hide();
+              $('#fade-wrapper').fadeOut();
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
