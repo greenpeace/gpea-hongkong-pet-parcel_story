@@ -7,7 +7,7 @@
     "parcel": "parcel serve",
     "deploy": "yarn build && gh-pages -d dist",
     "build": "yarn clean && parcel build src/*.html --public-url ./ --no-minify",
-    "build:en": "yarn clean && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/meatfreeweek/ --no-minify",
+    "build:en": "yarn clean && parcel build ./src/*.html --public-url https://api.greenpeace.org.hk/2020/seminar/ --no-minify",
     "clean": "rm -rf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
