@@ -18,6 +18,20 @@
 .credit-line {
   @apply text-sm pt-2;
 }
+
+.line {
+  @apply my-4;
+}
+
+.speaker h3 {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.speaker__avatar {
+  max-width: 220px;
+  margin: 0 20px;
+}
 /**
  * This injects Tailwind's utility classes and any utility classes registered
  * by plugins.
